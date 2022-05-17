@@ -9,7 +9,7 @@
 FIX THIS UP
 
 <details>
-<summary>Resources</summary>
+<summary>resources</summary>
 <a href="/6447/resources/pwntools"></a>
 <a href="/6447/resources/pwndbg"></a>
 <a href="/6447/resources/binary-ninja"></a>
@@ -18,6 +18,6 @@ FIX THIS UP
 </details>
 
 <details>
-<summary>Slides</summary>
-<a href="/6447/week1">week 1</a>
+<summary>slides</summary>
+<a href="/6447/week01">week 1</a>
 </details>
