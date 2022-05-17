@@ -1,12 +1,12 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "week01"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
 # COMP6447
-### T1[46]A {{ replace .Name "-" " " | title }}
+### T1[46]A week01
 
 ---
 
