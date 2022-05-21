@@ -4,14 +4,14 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at 14:05
+## We'll get started at [46]:05
 People b late
 
 ---
 
 {{< slide class="center" >}}
-# COMP6447
-### T1[46]A {{ replace .Name "-" " " | title }}
+# {{ replace .Name "-" " " | title }}
+### T1[68]A COMP6447 
 
 ---
 
@@ -19,8 +19,8 @@ People b late
 
 We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
 
-*TLDR: Don't be a dick*
+*TLDR: Don't be a ~~dick~~ jerk*
 
-[https://sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
+[sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
 
 ---
