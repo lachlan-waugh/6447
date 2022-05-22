@@ -53,3 +53,8 @@ Then add the folder the lib is stored into your python path:
 export PYTHONPATH="$PYTHONPATH:/folder/location/"
 ```
 You can either run this every time you open a new terminal, or add it to your ~/.bashrc or ~/.zshrc and it will auto-run it everytime.
+
+Finally, you can include this library into your programs with
+```python
+from lib import *
+```
