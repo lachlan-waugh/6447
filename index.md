@@ -2,7 +2,7 @@
     .footer {
         display: none !important;
     }
-    .downloads {
+    #downloads {
         display: none !important;
     }
 </style>

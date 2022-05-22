@@ -1,8 +1,5 @@
 # HELLO!
 
-<!-- <details markdown=1>
-<summary>installation</summary> -->
-
 ```python
 from pwn import *
 
@@ -29,14 +26,3 @@ p.sendlineafter(until, line)   # combines recvuntil() and sendline()
 ```python
 p32(0x12345678) # packs a 32-bit hex number (e.g. 0x12345678 -> b'\x78\x56\x34\x12')
 ```
-
-<!-- </details> -->
-
-<details>
-<summary>resources</summary>
-<a href="/6447/resources/pwntools"></a>
-<a href="/6447/resources/pwndbg"></a>
-<a href="/6447/resources/binary-ninja"></a>
-<a href="/6447/resources/ida"></a>
-<a href="/6447/resources/template"></a>
-</details>
