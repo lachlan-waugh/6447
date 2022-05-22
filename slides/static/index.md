@@ -10,14 +10,18 @@ FIX THIS UP
 
 <details>
 <summary>resources</summary>
-<a href="/6447/resources/pwntools"></a>
-<a href="/6447/resources/pwndbg"></a>
-<a href="/6447/resources/binary-ninja"></a>
-<a href="/6447/resources/ida"></a>
-<a href="/6447/resources/template"></a>
+<ul>
+<li><a href="/6447/resources/pwntools">pwntools</a></li>
+<li><a href="/6447/resources/pwndbg">pwndbg</a></li>
+<li><a href="/6447/resources/binary-ninja">binary-nina</a></li>
+<li><a href="/6447/resources/template">template</a></li>
+<li><a href="/6447/resources/lib">lib</a></li>
+</ul>
 </details>
 
 <details>
 <summary>slides</summary>
-<a href="/6447/week01">week 1</a>
+<ul>
+<li><a href="/6447/week01">week 1</a></li>
+</ul>
 </details>
