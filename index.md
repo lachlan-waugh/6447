@@ -1,11 +1,4 @@
-<!-- <style>
-    .footer {
-        display: none !important;
-    }
-    #downloads {
-        display: none !important;
-    }
-</style> -->
+<style>#downloads { display: none !important; }</style>
 # TODO
 
 FIX THIS UP
