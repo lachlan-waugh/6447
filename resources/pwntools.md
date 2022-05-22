@@ -6,12 +6,13 @@
 ```python
 from pwn import *
 
-p = prog('./vulnerable-program')    # 
-e = ELF('./vulnerable-program')     # 
-r = remote('0.0.0.0', 1234)         # 
+p = prog('./vuln')          # 
+e = ELF('./vuln')           # 
+r = remote('0.0.0.0', 1234) #
+
 # https://docs.pwntools.com/en/stable/gdb.html
-gdb.attach(p, )  # attach to an existing process
-gdb.debug('', )   # spin up a new debugger process, stopped at the first instruction
+gdb.attach(p, gdb_cmd)  # attach to an existing process
+gdb.debug('./vuln', )   # spin up a debugger process, stopped at the first instruction
 ```
 
 ```python
