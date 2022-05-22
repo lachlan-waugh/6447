@@ -1,3 +1,5 @@
+<style>#downloads { display: none !important; }</style>
+
 # HELLO!
 
 ```python
