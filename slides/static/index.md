@@ -1,6 +1,9 @@
 <style>
     .footer {
-        display: none;
+        display: none !important;
+    }
+    .downloads {
+        display: none !important;
     }
 </style>
 
