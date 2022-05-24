@@ -32,9 +32,9 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## > whoami
-
 {{% section %}}
+
+## > whoami
 
 * Lachlan
 * CompSci (Security) / Maths
@@ -42,11 +42,15 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
+## how to contact me
+
 * lachlan.waugh@student.unsw.edu.au
 * [@melon]() on the SecEdu Slack
 * [@lachaln]() on the SecSoc Discord
 
 ---
+
+## places for course discussion
 
 * [seceduau.slack.com/signup](https://seceduau.slack.com/signup)
     * #cs6447
@@ -57,11 +61,19 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## > whoareu
+
+{{% section %}}
+
 ![](../assets/img/icebreaker.jpg)
+
+---
+
 * Your name, degree, year?
 * Why'd you do the course?
 * Fun fact?
 * ~~Your credit card number and the 3 wacky digits on the back~~
+
+{{% /section %}}
 
 ---
 
