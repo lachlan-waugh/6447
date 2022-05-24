@@ -63,5 +63,5 @@ elf.address = 0xdeadbeef    # if ASLR is enabled, you'll need to specify the bin
 ```python
 c = cyclic_gen()
 c.get(n)        # Get a chunk of length n
-c.find(b'caaa') # -> (8, 2, 0): position 8, which is chunk 2 at position 0
+c.find(b'caaa') # -> (8, 0, 8): position 8, which is chunk 0 at position 8
 ```
