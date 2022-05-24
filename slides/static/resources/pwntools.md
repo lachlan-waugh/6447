@@ -58,3 +58,10 @@ elf.symbols['win']  #
 elf.got['puts']     # 
 elf.address = 0xdeadbeef    # if ASLR is enabled, you'll need to specify the binary base)
 ```
+
+## locating what part of your input overwrites certain registers
+```python
+c = cyclic_gen()
+c.get(n)        # Get a chunk of length n
+c.find(b'caaa') # -> (8, 2, 0): position 8, which is chunk 2 at position 0
+```
