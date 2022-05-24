@@ -26,7 +26,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-![](assets/img/sus.png)
+![](../assets/img/sus.png)
 
 {{% /section %}}
 
@@ -57,7 +57,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## > whoareu
-![](assets/img/icebreaker.jpg)
+![](../assets/img/icebreaker.jpg)
 * Your name, degree, year?
 * Why'd you do the course?
 * Fun fact?
