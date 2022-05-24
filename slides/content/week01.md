@@ -15,6 +15,7 @@ People b late
 
 ---
 
+{{% section %}}
 ## Good faith policy
 
 We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
@@ -22,6 +23,12 @@ We expect a high standard of professionalism from you at all times while you are
 *TLDR: Don't be a ~~dick~~ jerk*
 
 [sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
+
+---
+
+![](assets/img/sus.png)
+
+{{% /section %}}
 
 ---
 
@@ -50,7 +57,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## > whoareu
-![](../resources/icebreaker.jpg)
+![](assets/img/icebreaker.jpg)
 * Your name, degree, year?
 * Why'd you do the course?
 * Fun fact?
