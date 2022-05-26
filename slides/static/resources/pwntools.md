@@ -6,9 +6,12 @@
 ```python
 from pwn import *
 
-p = prog('./vuln')          # 
-e = ELF('./vuln')           # 
 r = remote('0.0.0.0', 1234) #
+p = prog('./vuln')          #
+
+p.interactive() # drops you into an interactive shell
+p.close()       # oh man, idk
+pause()         #  
 ```
 
 ## debugging with gdb
@@ -16,11 +19,6 @@ r = remote('0.0.0.0', 1234) #
 # https://docs.pwntools.com/en/stable/gdb.html
 gdb.attach(p, gdb_cmd)  # attach to an existing process
 gdb.debug('./vuln', )   # spin up a debugger process, stopped at the first instruction
-```
-
-```python
-p.interactive()     # drops you into an interactive shell
-p.close()           # oh man, idk
 ```
 
 ```python
@@ -33,6 +31,9 @@ p.sendlineafter(until, line)   # combines recvuntil() and sendline()
 ```python
 p32(0x12345678)          # packs a 32-bit hex number (b'\x78\x56\x34\x12')
 u32(b'\x78\x56\x34\x12') # unpacks a 32-bit (little-endian) number.
+hex()           #
+bytes()         #
+f"".encode()    #
 ```
 
 ## shellcode
@@ -51,12 +52,17 @@ asm("""
 """) # a simple system('/bin/sh') payload
 ```
 
-## 
+## reading memory address
+magic numbers are bad, use these instead
 ```python
-# magic numbers are bad, use this instead
+elf = ELF('./vuln')         # 
+elf = p.elf                 # same as ELF('./vuln')
+
 elf.symbols['win']  # 
 elf.got['puts']     # 
-elf.address = 0xdeadbeef    # if ASLR is enabled, you'll need to specify the binary base)
+
+# if ASLR is enabled, you'll need to specify the binary base), otherwise it'll just give you the offset
+elf.address = 0xdeadbeef 
 ```
 
 ## locating what part of your input overwrites certain registers
@@ -64,4 +70,11 @@ elf.address = 0xdeadbeef    # if ASLR is enabled, you'll need to specify the bin
 c = cyclic_gen()
 c.get(n)        # Get a chunk of length n
 c.find(b'caaa') # -> (8, 0, 8): position 8, which is chunk 0 at position 8
+```
+
+## finding ROPTools
+```python
+# you can ignore this until week05
+rop = ROP('./vuln') #
+## TODO https://docs.pwntools.com/en/stable/rop/rop.html
 ```
