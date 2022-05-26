@@ -12,6 +12,9 @@ def start(prog, args, port=None, gdb_cmd=None):
     context.arch = 'i386'
     context.terminal = ['urxvtc', '-e', 'sh', '-c']
 
+    # can be disabled, removes a lot of the annoying output
+    context.log_level = 'error'
+
     if args.REMOTE:
         p = remote('plsdonthaq.me', port)
         elf = ELF(prog)
