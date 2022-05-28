@@ -54,6 +54,18 @@ def fmtstr_build(win, target, offset, padding):
             payload += f"%{byte}c%{offset + i}$hhn%{256 - byte}c".encode()
 
     return payload
+
+def fmtstr_offset(binary, after, padding=0):
+    for i in range(1, 20):
+        p = process(binary)
+
+        p.sendlineafter(after, f'{b'A' * padding}AAAA%{i}$x'.encode())
+        output = p.recvline().decode('utf-8')
+
+        p.close()
+
+        if '41414141' in output:
+            return i
 ```
 
 Then add the folder the lib is stored into your python path:
