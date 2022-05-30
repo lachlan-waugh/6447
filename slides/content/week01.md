@@ -102,22 +102,25 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## Lecture content
 {{% section %}}
+## Lecture content
 
-* Buffer overflows
-* Stack canaries
-* Endianness
-* Register layout
-* ASLR
+* Memory layout:
+* Types in memory: pointers, endianness
+
+---
 
 {{% /section %}}
 
 ---
 
 ## Lab
-* There is one binary, with 2 vulnerabilities
-* Don't look at the source code!!1
+* Set up your tooling
+	* pwntools
+	* pwndbg
+	* binaryninja
+* Sort out groups for the fuzzer.
+* If we have time, I'll go through the intro wargame.
 
 ---
 
