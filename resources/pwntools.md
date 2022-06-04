@@ -7,7 +7,7 @@
 from pwn import *
 
 r = remote('0.0.0.0', 1234) #
-p = prog('./vuln')          #
+p = process('./vuln')          #
 
 p.interactive() # drops you into an interactive shell
 p.close()       # oh man, idk
@@ -33,7 +33,8 @@ p32(0x12345678)          # packs a 32-bit hex number (b'\x78\x56\x34\x12')
 u32(b'\x78\x56\x34\x12') # unpacks a 32-bit (little-endian) number.
 hex()           #
 bytes()         #
-f"".encode()    #
+f''.encode()    #
+b''.decode()    # 
 ```
 
 ## shellcode
