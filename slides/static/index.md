@@ -1,11 +1,7 @@
 <style>#downloads { display: none !important; }</style>
 
 ## slides
-<details><summary></summary>
-<ul>
-<li><a href="/6447/week01">week 1</a></li>
-</ul>
-</details>
+* [week-01](/6447/week01)
 
 &nbsp;
 
@@ -20,6 +16,14 @@
 
 ## useful websites
 * []()
+
+&nbsp;
+
+## Community stuff
+* Email me @ [lachlan.waugh@student.unsw.edu.au]()
+* Join the [slack](seceduau.slack.com/signup) (im [@melon]()), then join the servers:
+    * #cs6447
+    * #cs6447-22t2-t16a
 
 &nbsp;
 

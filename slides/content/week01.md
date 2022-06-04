@@ -70,6 +70,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 * Your name, degree, year?
 * Why'd you do the course?
+* What time did you sleep last night?
 * Fun fact?
 * ~~Your credit card number and the 3 wacky digits on the back~~
 
