@@ -24,6 +24,7 @@
 * Join the [slack](seceduau.slack.com/signup) (im [@melon]()), then join the servers:
     * #cs6447
     * #cs6447-22t2-t16a
+* pls dont contact Adam / the course account for random stuff or I'll get fired.
 
 &nbsp;
 
