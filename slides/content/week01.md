@@ -26,7 +26,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-![](../assets/img/sus.png)
+![](../img/week01/sus.png)
 
 {{% /section %}}
 
@@ -64,7 +64,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 {{% section %}}
 
-![](../assets/img/icebreaker.jpg)
+![](../img/week01/icebreaker.jpg)
 
 ---
 
