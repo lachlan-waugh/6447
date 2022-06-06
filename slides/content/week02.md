@@ -37,7 +37,11 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## ASLR
 ```bash
+# turn aslr off
 sudo sysctl kernel.randomize_va_space=0
+
+# check if it's on
+cat /proc/sys/kernel/randomize_va_space
 ```
 
 
