@@ -1,18 +1,19 @@
-#!/usr/bin/env python3
-
 from pwn import *
 
 global p
 global elf
 
-def start(prog, args, port=None, gdb_cmd=None):
+def start(prog, args, port=None, gdb_cmd="continue"):
     prog = './' + prog
 
     context.arch = 'i386'
-    context.terminal = ['urxvtc', '-e', 'sh', '-c']
+    context.terminal = ['urxvt', '-e', 'sh', '-c']
+
+    # can be disabled, removes a lot of the annoying output
+    context.log_level = 'error'
 
     if args.REMOTE:
-        p = remote('plsdonthaq.me', port)
+        p = remote('comp6447.wtf', port)
         elf = ELF(prog)
 
     elif args.GDB:
@@ -30,9 +31,11 @@ def grab(p, start, end):
     return p.recvuntil(end, drop=True)
 
 def pack(msg):
-    print(bytes(msg, 'utf-8'))
-    return bytes(msg, 'utf-8')
+    return bytes(str(msg), 'utf-8')
 
+# overwrites the address at target() with win().
+# offset specifies which stack variable you control %{target}$n 
+# padding specifies required padding to align the input in the stack variable (one of [0,1,2,3])
 def fmtstr_build(win, target, offset, padding):
     payload = b"A" * padding
     payload += p32(target + 0) + p32(target + 1) + p32(target + 2) + p32(target + 3)

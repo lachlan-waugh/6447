@@ -25,14 +25,21 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## Lecture content
 {{% section %}}
 
-* Buffer overflows
-* Stack canaries
-* Endianness
+## Lecture content
 * Register layout
+* The stack
+* Assembly instructions
 * ASLR
+
+---
+
+## ASLR
+```bash
+sudo sysctl kernel.randomize_va_space=0
+```
+
 
 {{% /section %}}
 
