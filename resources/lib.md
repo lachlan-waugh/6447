@@ -58,7 +58,7 @@ def fmtstr_offset(binary, after, padding=0):
     for i in range(1, 20):
         p = process(binary)
 
-        p.sendlineafter(after, f'{b'A' * padding}AAAA%{i}$x'.encode())
+        p.sendlineafter(after, f'{b"A" * padding}AAAA%{i}$x'.encode())
         output = p.recvline().decode('utf-8')
 
         p.close()
