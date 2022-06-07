@@ -22,7 +22,7 @@
 
 ## Community stuff
 * Email me @ [lachlan.waugh@student.unsw.edu.au]()
-* Join the [slack](seceduau.slack.com/signup) (im [@melon]()), then join the servers:
+* Join the [slack](https://seceduau.slack.com/signup) (im [@melon]()), then join the servers:
     * #cs6447
     * #cs6447-22t2-t16a
 * pls dont contact Adam / the course account for random stuff or I'll get fired.
