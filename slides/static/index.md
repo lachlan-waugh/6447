@@ -16,7 +16,7 @@
 &nbsp;
 
 ## useful websites
-* []()
+* [finding libc offsets](https://libc.blukat.me)
 
 &nbsp;
 

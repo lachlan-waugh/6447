@@ -5,7 +5,6 @@ outputs: ["Reveal"]
 ---
 
 ## We'll get started at [46]:05
-People b late
 
 ---
 
