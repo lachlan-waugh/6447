@@ -2,6 +2,7 @@
 
 ## slides
 * [week-01](/6447/week01)
+* [week-02](/6447/week02)
 
 &nbsp;
 
@@ -15,13 +16,13 @@
 &nbsp;
 
 ## useful websites
-* []()
+* [finding libc offsets](https://libc.blukat.me)
 
 &nbsp;
 
 ## Community stuff
 * Email me @ [lachlan.waugh@student.unsw.edu.au]()
-* Join the [slack](seceduau.slack.com/signup) (im [@melon]()), then join the servers:
+* Join the [slack](https://seceduau.slack.com/signup) (im [@melon]()), then join the servers:
     * #cs6447
     * #cs6447-22t2-t16a
 * pls dont contact Adam / the course account for random stuff or I'll get fired.

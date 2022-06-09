@@ -1,5 +1,5 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Week03"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -9,7 +9,7 @@ outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
-# {{ replace .Name "-" " " | title }}
+# week03
 ### T1[68]A COMP6447 
 
 ---
@@ -23,3 +23,7 @@ We expect a high standard of professionalism from you at all times while you are
 [sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
 
 ---
+
+# Programming? in my security course??
+* Last week: jumping to a win() function
+* This week: there's no win(), what do?
