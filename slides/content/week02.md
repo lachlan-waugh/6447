@@ -66,6 +66,11 @@ sudo sysctl kernel.randomize_va_space=0
 cat /proc/sys/kernel/randomize_va_space
 ```
 
+---
+
+## Stack canaries
+They save the day and make everything impossible to crack! :)
+
 {{% /section %}}
 
 ---
@@ -74,9 +79,7 @@ cat /proc/sys/kernel/randomize_va_space
 
 ## Demo
 
-
 ---
-
 
 {{% /section %}}
 
@@ -90,10 +93,3 @@ cat /proc/sys/kernel/randomize_va_space
 ---
 
 # Walkthrough
-
----
-
-## Stack canaries
-They save the day and make everything impossible to crack! :)
-
----
