@@ -3,6 +3,7 @@
 ## slides
 * [week-01](/6447/week01)
 * [week-02](/6447/week02)
+* [week-03](/6447/week03)
 
 &nbsp;
 
@@ -16,7 +17,8 @@
 &nbsp;
 
 ## useful websites
-* [finding libc offsets](https://libc.blukat.me)
+* [register values for syscalls](https://syscalls.w3challs.com/?arch=x86)
+* [libc offsets](https://libc.blukat.me)
 
 &nbsp;
 

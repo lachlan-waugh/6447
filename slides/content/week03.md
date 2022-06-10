@@ -27,3 +27,18 @@ We expect a high standard of professionalism from you at all times while you are
 # Programming? in my security course??
 * Last week: jumping to a win() function
 * This week: there's no win(), what do?
+
+---
+
+{{% section %}}
+
+```
+mov a, b        # a = b
+add a, value    # a += value
+sub a, value    # a -= value
+push a          # push a onto stack, dec esp - 4
+pop a           # pop into a from stack, add esp + 4
+int 0x80        # syscall
+```
+
+{{% /section %}}
