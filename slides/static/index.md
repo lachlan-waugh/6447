@@ -8,6 +8,7 @@
 &nbsp;
 
 ## resources
+* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447/tree/main/demos)
 * [tooling](/6447/resources/tooling)
 * [pwntools](/6447/resources/pwntools)
 * [pwndbg](/6447/resources/pwndbg)
