@@ -23,3 +23,16 @@ We expect a high standard of professionalism from you at all times while you are
 [sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
 
 ---
+
+## Lecture content
+{{% section %}}
+
+{{% /section %}}
+
+---
+
+## Demo
+
+---
+
+## Tutorial
