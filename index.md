@@ -18,7 +18,8 @@
 &nbsp;
 
 ## useful websites
-* [register values for syscalls](https://syscalls.w3challs.com/?arch=x86)
+* [register values for syscalls](http://cgi.cse.unsw.edu.au/~z5164500/syscall/)
+* [also register values for syscalls](https://syscalls.w3challs.com/?arch=x86)
 * [libc offsets](https://libc.blukat.me)
 
 &nbsp;
