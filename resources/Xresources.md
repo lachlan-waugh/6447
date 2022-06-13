@@ -3,9 +3,11 @@
 # Prettifying your urxvt session ;)
 
 If your urxvt session looks like this
+
 ![](../img/resources/ugly.png)
 
 Then I would suggest that you pop the below stuff into your `~/.Xresources`, and it should look like this!
+
 ![](../img/resources/nice.png)
 
 You'll also need to use `xrdb ~/.Xresources` below make sure the updates are recognised
