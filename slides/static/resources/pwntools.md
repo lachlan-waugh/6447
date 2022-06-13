@@ -17,8 +17,12 @@ pause()         #
 ## debugging with gdb
 ```python
 # https://docs.pwntools.com/en/stable/gdb.html
+context.arch = 'i386'
+context.terminal = ['urxvt', '-e', 'sh', '-c']
+
 gdb.attach(p, gdb_cmd)  # attach to an existing process
 gdb.debug('./vuln', )   # spin up a debugger process, stopped at the first instruction
+# if the gdb windows that's spawned is ugly as hell, check out [this](/6447/resources/Xresources)
 ```
 
 ```python
