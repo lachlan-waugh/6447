@@ -24,7 +24,7 @@ read_write = asm("""
     ## buffer = read(fd)
     mov ebx, eax    # ebx = fd
     mov eax, 0x3    # eax = 3 (read)
-    mov ecx, esp    # use the stack as the buffer to read to
+    lea ecx, [esp+4]# use the stack as the buffer to read to
     mov edx, 0x1A   # read 0x1A = 26 bytes
     int 0x80
 
@@ -32,7 +32,7 @@ read_write = asm("""
     mov edx, eax    # eax stores the number of bytes written, so write however any bytes were read from the file
     mov eax, 0x4    # eax = 4 (write)
     mov ebx, 0x1    # write to stdout (fd 1)
-    mov ecx, esp    # write from the stack (our buffer)
+    lea ecx, [esp+4]# write from the stack (our buffer)
     int 0x80
 
     ## close(fd) 
