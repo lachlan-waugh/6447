@@ -235,6 +235,12 @@ source: [here](https://www.aldeid.com/wiki/X86-assembly/Instructions/call)
 
 ---
 
+# Alternatively #2
+* All of the strings in the program are still accessible to you
+* so you could just feed the addresses strings in (if any of them are useful of course).
+
+---
+
 # NOPNOPNOP
 
 ---
