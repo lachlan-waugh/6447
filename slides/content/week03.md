@@ -151,6 +151,66 @@ What if we don't have a buffer big enough for the entire payload?
 
 ---
 
+{{% section %}}
+
+## My payload isn't working, help
+* no /bin/sh's?
+* NOPNOPNOPNOPNOPNOP
+
+---
+
+## The /bin/sh problamo
+/bin/sh\00 
+```
+                ↓↓ that's a null byte :(
+ hs/  |  push 0x0068732F
+nib/  |  push 0x6E69622F    
+```
+
+&nbsp;
+
+* What if:
+    * the program stops reading at a null byte/newline?
+    * the program strips/parses them out?
+
+---
+
+## The /bin/sh solutiomo
+* Pad out /bin/sh -> /bin//sh
+```
+                ↓↓ that's not a null byte :)
+hs//  |  push 0x68732F2F
+nib/  |  push 0x6E69622F    
+```
+
+&nbsp;
+
+* However, what happens to our null byte?
+
+---
+
+## The missing nullbyte
+We still need to get a nullbyte onto the stack, otherwise it'll just do
+```
+execve('/bin//sh + <some_garbage_data>')
+```
+
+&nbsp;
+
+There's plenty of ways to do it, e.g.
+```
+xor eax, eax
+push eax
+```
+
+---
+
+## Alternatively
+
+{{% /section %}}
+
+---
+
 ## Tutorial
 Now it's your turn!
 * {{% fragment %}}Print "hello world\n" to stdout.{{% /fragment %}}
