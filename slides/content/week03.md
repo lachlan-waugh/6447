@@ -207,6 +207,68 @@ push eax
 
 ## Alternatively
 
+```
+call pwn
+    pwn:
+    pop ebx                 # ebx now stores &(pwn)
+    diff = binsh - pwn      # we find the offset to binsh
+    add ebx, diff           # we add the offset
+    ## equivalently: lea ebx, [ebx + binsh - pwn]
+
+    ## now ebx stores &binsh, so we call execve or w/e
+
+    binsh: .string "/bin/sh"
+```
+
+full payload [here](https://github.com/lachlan-waugh/6447/blob/main/demos/labs/week03/shell-alternate.py)
+
+---
+
+## Why does that work?
+* `call func` will push the return address (the address of the next instruction) onto the stack
+
+* the return address of `call pwn` would be &pwn
+
+* now we have the address of `pwn`, we just need to offset to `binsh`, and use that as our address
+
+source: [here](https://www.aldeid.com/wiki/X86-assembly/Instructions/call)
+
+---
+
+# NOPNOPNOP
+
+---
+
+## nopsledin' away
+Sometimes 
+* we won't be given the exact address of the start of our payload, or
+* the address is a random distance into our buffer.
+
+&nbsp;
+
+```
+the start of our input             the leaked address
+↓↓↓↓                               ↓↓↓↓
+\xDE \xAD \xBE \xEF \xCA \xFE \xBA \xBE \xTR \xIV \xIA \xLl
+```
+
+---
+
+## nopsledin' away
+
+`nop` (no-operation) `\x90` is a single-byte instruction, which does nothing
+
+&nbsp;
+
+So what if we padded our input out with those `nops` (similar to padding we used to reach EIP)
+
+
+```
+the start of our input             the leaked address
+↓↓↓↓                               ↓↓↓↓
+\x90 \x90 \x90 \x90 \x90 \x90 \x90 \xDE \xAD \xBE \xEF \xCA \xFE
+```
+
 {{% /section %}}
 
 ---
