@@ -2,8 +2,8 @@ from pwn import *
 
 username = ""
 password = ""
-username = "COMP6447_ADMIN"
-password = "SECRETPASSWORD"
+# username = "COMP6447_ADMIN"
+# password = "SECRETPASSWORD"
 
 context.log_level = 'error'
 
