@@ -34,14 +34,14 @@ We expect a high standard of professionalism from you at all times while you are
 {{% section %}}
 
 ## printf (and it's siblings)
-* `[v, va, s, sn, f]printf`
-* `[v, va, s, sn, f]scanf`
-* others: `setproctitle, syslog`
+* `[v,va,s,sn,f]printf`
+* `[v,va,s,sn,f]scanf`
+* `setproctitle`, `syslog`, and others!
 
 ---
 
 ## anatomy of a format string
-`%<flags><width><precision><modifier>$?<type>`
+`%<flags><width><precision><modifier><type>`
 
 ---
 
@@ -59,16 +59,26 @@ We expect a high standard of professionalism from you at all times while you are
 ## modifiers
 * `h`: print half 
 	* `%hd`: print bottom 2 bytes
-	* `%hhd`: print bottom 1 byte
+	* `%hn`: write two bytes
 * `hh`: print half half (quarter)
-	* `%hn`: writes only 2 bytes
-	* `%hhn`: writes only 1 byte
+	* `%hhd`: print bottom byte
+	* `%hhn`: write one byte
 
 ---
 
-## width
-* padding stuff TODO
-* `%100c` pads the argument to 100 bytes (like `zfill()` in python) 
+## width (minimum width)
+* you can pad your input, like `zfill()` in python 
+* `%10c` pads the argument to 100 bytes
+
+```C
+printf("%10c", 5);
+>         5
+```
+
+```C
+printf("%10c", 10)
+>        10
+```
 
 ---
 
@@ -76,6 +86,12 @@ We expect a high standard of professionalism from you at all times while you are
 * not included in the graphic, woops
 * which argument we want to print from/to
 * e.g. `%10$x` prints the 10th argument as hex
+
+```C
+int a = 1, b = 2, c = 3;
+printf("%2x", a, b, c);
+> 0x2
+```
 
 ---
 
@@ -104,7 +120,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## Padding
-*
+* 
 
 ---
 
