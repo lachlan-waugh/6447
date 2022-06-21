@@ -98,6 +98,8 @@ printf("%2x", a, b, c);
 ## This is a hacking course, why should I care?
 * what happens when you don't provide any arguments (apart from the format string)?
 * e.g. `printf(buffer);`
+* now where does it gets it's arguments from?
+* it'll just start grabbing values from the stack, where the arguments **should** be
 
 {{% /section %}}
 
@@ -116,16 +118,38 @@ printf("%2x", a, b, c);
 ## Potential issues when writing 
 * padding
 * writing addresses?
+* writing zeros?
 
 ---
 
 ## Padding
-* 
+* to read/write an address, it need's to be aligned in one of the stack addresses
+* so if you see it isn't correctly aligned, just add some padding.
+
+```
+		     AAAA             BBAAAA
+		| ---------- |    | ---------- |
+		| 0x41410000 | -> | 0x41414141 |
+		| 0x00004141 | -> | 0x00004242 |
+		| ---------- |    | ---------- |
+```
+
+* small demo 
 
 ---
 
 ## Writing addresses
-* 
+* it's fine to write a small int to a variable
+	* e.g. for `10` you'd just need to write `10` chars + %n
+	* what about `0x08041234(134484532)`, how do we write 134M chars?
+* write 1 byte at a time to `addr,addr+1...`
+
+---
+
+## Where can I write?
+* you can write to stack variables
+	* if there's an address on the stack, you can read/write it
+	* if your input is on the stack, you can read/write anywhere (just put an address in your payload, and read/write there)
 
 {{% /section %}}
 
@@ -133,7 +157,27 @@ printf("%2x", a, b, c);
 
 {{% section %}}
 
-# Protections
+## Protections
+* ASLR + PIE
+* RELRO
+* PAC
+* NX
+* Fortify
+
+---
+
+## TLDR
+*ASLR*: randomizes the programs location in memory
+
+*PIE*: program can only use relative jumps (needs ASLR)
+
+*RELRO*: GOT is Read-Only (partial is trash, full is RIP)
+
+*PAC*: you can only jump to signed pointers 
+
+*NX*: the stack isn't executable (no shellcode)
+
+*Fortify*: %n only allowed if fmtstr in read-only memory 
 
 ---
 
@@ -152,6 +196,7 @@ printf("%2x", a, b, c);
 ---
 
 ## Tutorial
+and stack-dump walkthrough
 
 ---
 
