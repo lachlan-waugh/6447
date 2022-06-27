@@ -31,6 +31,8 @@ int three(int x, int y) {
 }
 
 int main(int argc, char **argv) {
+    if (argc == 1 || argc == 2) return 0;
+
     int chal = atoi(argv[1]);
 
     switch (chal) {
