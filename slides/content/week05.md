@@ -120,12 +120,50 @@ path_translated = (char *) malloc(path_translated_len + 1);
 memcpy(path_translated, pt, ptlen);
 if (env_path_info) {
     memcpy(path_translated + ptlen, env_path_info,
+//         vvvvvvvvvvvvvvvvvvvvvvvvvvvvv
            path_translated_len - ptlen);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
+
+---
+
+### The problem?
+```C
+ptlen + env_path_info ? strlen(env_path_info) : 0;
+
+// is not the same as
+ptlen + (env_path_info ? strlen(env_path_info) : 0);
+```
+
+---
+
+### what they wanted
+```C
+if(env_path_info) {
+    path_translated_len = ptlen + strlen(env_path_info);
+} else {
+    path_translated_len = ptlen;
+}
+```
+
+### what they got
+```C
+if (ptlen + env_path_info){
+    path_translated_len = strlen(env_path_info);
+} else {
+    path_translated_len = 0;
+}
+```
+
+---
+
+> $ man mmap
+
 {{% /section %}}
 
 ---
 
+{{% section %}}
 ### What is the issue here?
 ```C
 if (x == 0) {
@@ -138,8 +176,35 @@ else {
 
 ---
 
-## Order of operations
+### what they wanted
+```C
+if (x == 0) {
+    if (y == 0) error();
+} else {
+    z = x + y;
+    fclose(&z);
+}
+```
 
+### what they got
+```C
+if (x == 0) {
+    if (y == 0)
+        error();
+    else {
+        z = x + y;
+        fclose(&z);
+    }
+}
+```
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+## Order of operations
+> which one is calculated first?
 ```C
 a + b * c
 > a + (b * c)
@@ -148,7 +213,55 @@ a + b * c
 
 ---
 
+### This is good :)
+```C
+if (count != 0 && sum/count < smallaverage)
+    printf("average < %g\n",smallaverage);
+```
+
+&nbsp;
+
+### This, not so much
+```C
+i = 0
+while (i < n)
+    y[i] = x[i++];
+```
+
+> but why?
+{{% /section %}}
+
+---
+
+{{% section %}}
 ## Integer overflows
+```C
+u_int strLen = strlen(userinput);
+int buffsize = strLen + 11;
+
+char *mem = malloc(buffsize);
+strncpy(mem,"this/path/",10);
+strncpy(mem[10],userinput,strLen);
+```
+
+---
+
+## It's here
+
+```C
+u_int strLen = strlen(userinput);
+//vvvvvvvvvvvvvvvvvvvvvvvvv
+int buffsize = strLen + 11;
+//^^^^^^^^^^^^^^^^^^^^^^^^^
+
+char *mem = malloc(buffsize);
+strncpy(mem,"this/path/",10);
+strncpy(mem[10],userinput,strLen);
+```
+
+what if user input is super long, (e.g. INT_MAX?)
+
+{{% /section %}}
 
 ---
 
@@ -160,7 +273,7 @@ fprintf(stderr,var);
 vsnprintf(var2, strlen(var2), var);
 // etc...
 ```
-> I hope you can do these lol
+> I hope you recognise these lol
 
 ---
 
@@ -219,21 +332,37 @@ printf("%s\n",a);
 
 ---
 
+{{% section %}}
 ## Off-by-one
 ```C
 char *var = malloc(10);
 if(var == NULL) return;
 
-for(int i=0; i<=10; i++){
+for(int i = 0; i <= 10; i++) {
     var[i] = argv[2][i];
 }
 ```
 
 ---
 
+## The problem
+```C
+char *var = malloc(10);
+//          ^^^^^^^^^^^
+if(var == NULL) return;
+
+for(int i = 0; i <= 10; i++) {
+//             ^^^^^^^^
+    var[i] = argv[2][i];
+}
+```
+{{% /section %}}
+
+---
+
 ## Tutorial
-> find the vulns
-> [https://webcms3.cse.unsw.edu.au/COMP6447/22T2/resources/75134](https://webcms3.cse.unsw.edu.au/COMP6447/22T2/resources/75134)
+> find the vulns [here](https://webcms3.cse.unsw.edu.au/COMP6447/22T2/resources/75134)
+* consider the impact of the vulns
 
 ---
 
