@@ -6,12 +6,12 @@
 * [week-03](/6447/week03)
 * [week-04](/6447/week04)
 * [week-05](/6447/week05)
-* [week-05](/6447/week07)
+* [week-07](/6447/week07)
 
 &nbsp;
 
 ## resources
-* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447/tree/main/demos)
+* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447-Labs)
 * [solutions to some of the pracs](https://github.com/lachlan-waugh/6447-Labs)
 * [tooling](/6447/resources/tooling)
 * [pwntools](/6447/resources/pwntools)
