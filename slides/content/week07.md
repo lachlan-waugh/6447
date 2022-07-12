@@ -79,7 +79,26 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## ROP
 {{% section %}}
+* Instead of writing our own assembly instruction, we re-use existing instructions from the program.
 
+* We use instructions preceding a `ret` (gadgets), so we can jump to them, execute them, and jump back.
+
+* We chain these gadgets so we can execute a full payload, by: jumping to first one, executing it, jumping back, jumping to the second one, etc.
+
+---
+
+### Gadgets
+* Instructions can comprise of multiple-bytes
+    * If jump to an offset within an instructions
+    * We could have an entirely new instruction
+
+```
+    0xAABBCCDD          0xAABBCCDD      0xAABBCCDD
+      ^^^^^^^^              ^^                ^^^^
+    MOV EAX, 12         XOR EAX, EAX       INC EAX; CALL WIN
+```
+
+> note, I made those ^^^ up entirely
 
 ---
 
@@ -112,12 +131,15 @@ EDX = NULL
 INT 0x80 Syscall
 ```
 
-Now that's it's ROP
+---
+
+### Now that's it's ROP
+Instead of raw instructions, we'll use gadgets
 ```
-[GADGET_1] # EAX = 0xB # (11)
-[GADGET_2] # EBX = address to /bin/sh
-[GADGET_3] # ECX = NULL
-[GADGET_4] # EDX = NULL
+[GADGET_1] # EAX := 0xB # (11)
+[GADGET_2] # EBX := address to /bin/sh
+[GADGET_3] # ECX := NULL
+[GADGET_4] # EDX := NULL
 [GADGET_5] # INT 0x80 Syscall
 ```
 
@@ -148,6 +170,7 @@ Now that's it's ROP
 ---
 
 ### Using strings and values
+`pop ebx; ret` grabs the next address on the stack, and stores it in `ebx`
 ```C
 p32(0x08041234) // pop ebx; ret;
 p32(0x0804abcd) // address of "/bin/sh"
@@ -161,6 +184,7 @@ p32(0xA)        // 10
 ---
 
 ### Getting the stack address
+we could grab the stack pointer, and store it in `ebx`
 ```C
 push esp, pop ebx; ret;
 // now ebx will store &esp
@@ -170,18 +194,22 @@ push esp, pop ebx; ret;
 
 ---
 
+### What should a payload look like?
 ```
 [  PADDING  ] <== our first gadget should overwrite ret
+[  EAX=0xB  ]
 [  POP EBX  ]
 [  &BIN SH  ]
 [  XOR ECX  ]
 [  XOR EDX  ]
-[  SYSCALL  ] <== look above, it sets eax=12 and syscalls
+[  SYSCALL  ]
 ```
 
 ---
 
 ### How else could we get a shell?
+* we can also call functions!
+* what if the program already calls system?
 ```
 PUSH &('/bin/sh)
 CALL SYSTEM
@@ -189,12 +217,52 @@ CALL SYSTEM
 
 ---
 
+### DEMO
+
 {{% /section %}}
 
 ---
 
+## Ret2Libc
+{{% section %}}
+### What if the program doesn't have (good) enough gadgets?
+* We can jump to our own code
+* We can also jump to any used libraries
+
+---
+
+* LIBC stores all of the useful *"builtin"* functionality (`printf`, `gets`, etc)
+* That's a whole lot of gadgets we could utilise
+
+---
+
+* For a payload we'll need to find:
+    * the base address
+    * the libc version (to determine offsets)\*
+    * a helpful function
+
+> \* *function offsets vary by LIBC version, you can find the correct offsets [here](https://libc.nullbyte.cat/)*
+
+---
+
+### Pwntools
+* Alternatively, you can do it with `pwntools`
+* Similar to setting binary base, you set the libc base
+```python
+libc = ELF("libc_version.so")
+libc.address = printf_leak - libc.symbols['printf']
+# libc.address is now the correct address
+
+# you can directly access functions like:
+libc.symbols['system'] # etc...
+```
+
+---
+
 ## Demo
-> ROP & Ret2Libc
+> Ret2Libc
+
+{{% /section %}}
 
 ---
 
