@@ -11,7 +11,7 @@
 &nbsp;
 
 ## resources
-* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447-Labs)
+* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447/demos)
 * [solutions to some of the pracs](https://github.com/lachlan-waugh/6447-Labs)
 * [tooling](/6447/resources/tooling)
 * [pwntools](/6447/resources/pwntools)
