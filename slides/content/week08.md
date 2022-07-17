@@ -25,12 +25,9 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ### Chunkz
-{{% section %}}
-Stuff about chunks
+* `malloc()` returns chunks (blocks of memory)
 
----
-
-{{% /section %}}
+* *note: we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
 
 ---
 
