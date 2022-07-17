@@ -25,21 +25,50 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ### Chunkz
-
 {{% section %}}
-
-#### In-use chunks
-<img src="../img/week08/in-use.png" style="zoom:40%"/>
-<!-- ![](../img/week08/in-use.png) -->
+Stuff about chunks
 
 ---
 
+{{% /section %}}
+
+---
+
+### In-use chunks
+{{% section %}}
+
+<img src="../img/week08/in-use.png" height="500px" />
+
+---
+
+#### What is the "metadata"
+* size of the chunk
+* last 3 bits:
+    * 1: chunk is in main arena
+    * 2: chunk is mmap'd (not in the heap)
+    * 3: previous chunk in use
+
+> mixing metadata (control) & user data?
+
+---
+
+<img src="../img/week08/in-use2.png" height="500px" />
+
+{{% /section %}}
+
+---
+
+
 ### Free chunks
+{{% section %}}
 
 
 ---
 
 {{% /section %}}
+
+---
+
 
 ---
 
