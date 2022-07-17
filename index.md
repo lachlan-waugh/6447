@@ -7,6 +7,7 @@
 * [week-04](/6447/week04)
 * [week-05](/6447/week05)
 * [week-07](/6447/week07)
+* [week-08](/6447/week08)
 
 &nbsp;
 
