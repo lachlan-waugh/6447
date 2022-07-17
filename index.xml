@@ -20,5 +20,5 @@ sec.edu.au/good-faith-policy
 House cleaning Fuzzer Midpoint check-in is due this Sunday 6pm Make sure you&amp;rsquo;ve got a working prototype Midterm How&amp;rsquo;d you find it A summary so far Weeks 2/3 buffer overflow → win() shellcode (building a win()) Now: ROP (building a win() again) Buffer overflows Abusing functions which can read more data than they have allocated memory for (gets, strcpy)</description></item><item><title>Week08</title><link>/week08/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week08/</guid><description>We&amp;rsquo;ll get started at [46]:05 Week08 T1[68]A COMP6447 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
 TLDR: Don&amp;rsquo;t be a dick jerk
 sec.edu.au/good-faith-policy
-Chunkz Stuff about chunks
-In-use chunks What is the &amp;ldquo;metadata&amp;rdquo; size of the chunk last 3 bits: 1: chunk is in main arena 2: chunk is mmap&amp;rsquo;d (not in the heap) 3: previous chunk in use mixing metadata (control) &amp;amp; user data?</description></item></channel></rss>
+Chunkz malloc() returns chunks (blocks of memory)
+note: we&amp;rsquo;re attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (&amp;amp; if your exploit works)</description></item></channel></rss>
