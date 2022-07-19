@@ -25,9 +25,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ### Chunkz
-* `malloc()` returns chunks (blocks of memory)
-
-* *note: we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
+`malloc()` returns chunks (blocks of memory)
 
 ---
 
@@ -119,6 +117,23 @@ We expect a high standard of professionalism from you at all times while you are
 * pretty insecure tbh (but very fast) 
 * basically doesn't have any checks
 * each bin can only store 7 chunks
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+### A quick note
+* *we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
+
+* Depending on your OS/LIBC version/the orientation of the sun, you might get errors, e.g. double `free()` detected blah blah.
+
+---
+
+### Solution?
+* Just use docker
+    * `docker run -d --rm -h banana --name banana -v $(pwd):/ctf/work --cap-add=SYS_PTRACE plsiamlegit/6447-ubuntu:pwndocker`
+    * `docker exec -it banana /bin/bash`
 
 {{% /section %}}
 
