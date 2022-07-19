@@ -21,4 +21,4 @@ House cleaning Fuzzer Midpoint check-in is due this Sunday 6pm Make sure you&amp
 TLDR: Don&amp;rsquo;t be a dick jerk
 sec.edu.au/good-faith-policy
 Chunkz malloc() returns chunks (blocks of memory)
-note: we&amp;rsquo;re attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (&amp;amp; if your exploit works)</description></item></channel></rss>
+In-use chunks What is the &amp;ldquo;metadata&amp;rdquo; size of the chunk last 3 bits: 1: chunk is in main arena 2: chunk is mmap&amp;rsquo;d (not in the heap) 3: previous chunk in use mixing metadata (control) &amp;amp; user data?</description></item></channel></rss>
