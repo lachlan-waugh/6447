@@ -211,8 +211,8 @@ push esp, pop ebx; ret;
 * we can also call functions!
 * what if the program already calls system?
 ```
-PUSH &('/bin/sh)
 CALL SYSTEM
+PUSH &('/bin/sh)
 ```
 
 ---
