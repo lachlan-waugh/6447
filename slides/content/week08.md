@@ -126,7 +126,7 @@ We expect a high standard of professionalism from you at all times while you are
 ### A quick note
 * *we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
 
-* Depending on your OS/LIBC version/the orientation of the sun, you might get errors, e.g. double `free()` detected blah blah.
+* Depending on your OS/LIBC version/~~the orientation of the sun~~, you might get errors, e.g. double `free()` detected blah blah.
 
 ---
 
