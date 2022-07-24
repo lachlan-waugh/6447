@@ -21,4 +21,10 @@ House cleaning Fuzzer Midpoint check-in is due this Sunday 6pm Make sure you&amp
 TLDR: Don&amp;rsquo;t be a dick jerk
 sec.edu.au/good-faith-policy
 Chunkz malloc() returns chunks (blocks of memory)
-In-use chunks What is the &amp;ldquo;metadata&amp;rdquo; size of the chunk last 3 bits: 1: chunk is in main arena 2: chunk is mmap&amp;rsquo;d (not in the heap) 3: previous chunk in use mixing metadata (control) &amp;amp; user data?</description></item></channel></rss>
+In-use chunks What is the &amp;ldquo;metadata&amp;rdquo; size of the chunk last 3 bits: 1: chunk is in main arena 2: chunk is mmap&amp;rsquo;d (not in the heap) 3: previous chunk in use mixing metadata (control) &amp;amp; user data?</description></item><item><title>Week09</title><link>/week09/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week09/</guid><description>We&amp;rsquo;ll get started at [46]:05 Week09 T1[68]A COMP6447 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
+TLDR: Don&amp;rsquo;t be a dick jerk
+sec.edu.au/good-faith-policy
+Stack pivots The problem we have an overflowable buffer it&amp;rsquo;s too small for a full ROP payload think back to shellcode egghunters</description></item><item><title>Week10</title><link>/week10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week10/</guid><description>We&amp;rsquo;ll get started at [46]:05 Week10 T1[68]A COMP6447 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
+TLDR: Don&amp;rsquo;t be a dick jerk
+sec.edu.au/good-faith-policy
+Lecture content Demo Tutorial Walkthrough</description></item></channel></rss>
