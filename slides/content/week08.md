@@ -162,7 +162,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ### Exploiting this?
 
-if we modified the metadata (e.g. the next chunk ptr), then malloc(...) would return memory we decide.
+if we modified the metadata (e.g. the next chunk ptr), then malloc(...) would return memory we tell it to.
 
 ```PHP
 free(chunk)     // bin: chunk -> NULL
