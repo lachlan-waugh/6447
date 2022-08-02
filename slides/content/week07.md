@@ -50,7 +50,7 @@ We expect a high standard of professionalism from you at all times while you are
 &nbsp;
 
 ### Now:
-* ROP (building a `win()` again)
+* ROP (building a `win()` again (not in the stack))
 
 ---
 
