@@ -1,5 +1,3 @@
-<style>#downloads { display: none !important; }</style>
-
 # Tooling
 
 ## reverse engineering

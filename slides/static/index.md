@@ -1,15 +1,13 @@
-<style>#downloads { display: none !important; }</style>
-
 ## slides
-* [week-01](/6447/week01)
-* [week-02](/6447/week02)
-* [week-03](/6447/week03)
-* [week-04](/6447/week04)
-* [week-05](/6447/week05)
-* [week-07](/6447/week07)
-* [week-08](/6447/week08)
-* [week-09](/6447/week09)
-* [week-10](/6447/week10)
+* week01 [slides](/6447/week01) [~~recording~~]()
+* week02 [slides](/6447/week02) [~~recording~~]()
+* week03 [slides](/6447/week03) [~~recording~~]()
+* week04 [slides](/6447/week04) [~~recording~~]()
+* week05 [slides](/6447/week05) [~~recording~~]()
+* week07 [slides](/6447/week07) [~~recording~~]()
+* week08 [slides](/6447/week08) [~~recording~~]()
+* week09 [slides](/6447/week09) [~~recording~~]()
+* week10 [slides](/6447/week10) [~~recording~~]()
 
 &nbsp;
 

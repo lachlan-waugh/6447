@@ -39,12 +39,12 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## Register layout
 * AX is actually the bottom half of EAX (it's AH and AL), not the top half
-![](/img/week02/registers.png)
+![](/assets/img/week02/registers.png)
 
 ---
 
 ## Stack frames
-![](/img/week02/stack-grows-up.png)
+![](/assets/img/week02/stack-grows-up.png)
 * what register stores the stack pointer, and frame pointer?
 * Why are the parameters stored *below* the frame pointer?
 
@@ -52,7 +52,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## Actually it grows down
 The stack grows from high address to low addresses
-![](/img/week02/stack-grows-down.png)
+![](/assets/img/week02/stack-grows-down.png)
 
 ---
 

@@ -32,7 +32,7 @@ We expect a high standard of professionalism from you at all times while you are
 ### In-use chunks
 {{% section %}}
 
-<img src="../img/week08/in-use.png" height="500px" />
+<img src="../assets/img/week08/in-use.png" height="500px" />
 
 ---
 

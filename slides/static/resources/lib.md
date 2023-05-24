@@ -1,5 +1,3 @@
-<style>#downloads { display: none !important; }</style>
-
 ```python
 from pwn import *
 

@@ -54,7 +54,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## Harder re
-![](/img/week03/operation_implications.png)
+![](/assets/img/week03/operation_implications.png)
 
 ---
 
