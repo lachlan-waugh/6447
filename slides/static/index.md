@@ -1,24 +1,24 @@
 ## slides
-* week01 [slides](/6447/week01) [~~recording~~]()
-* week02 [slides](/6447/week02) [~~recording~~]()
-* week03 [slides](/6447/week03) [~~recording~~]()
-* week04 [slides](/6447/week04) [~~recording~~]()
-* week05 [slides](/6447/week05) [~~recording~~]()
-* week07 [slides](/6447/week07) [~~recording~~]()
-* week08 [slides](/6447/week08) [~~recording~~]()
-* week09 [slides](/6447/week09) [~~recording~~]()
-* week10 [slides](/6447/week10) [~~recording~~]()
+* week01 [slides](week01) [~~recording~~]()
+* week02 [slides](week02) [~~recording~~]()
+* week03 [slides](week03) [~~recording~~]()
+* week04 [slides](week04) [~~recording~~]()
+* week05 [slides](week05) [~~recording~~]()
+* week07 [slides](week07) [~~recording~~]()
+* week08 [slides](week08) [~~recording~~]()
+* week09 [slides](week09) [~~recording~~]()
+* week10 [slides](week10) [~~recording~~]()
 
 &nbsp;
 
 ## resources
-* [some demos I prepared earlier](https://github.com/lachlan-waugh/6447/demos)
+* [some demos I prepared earlier](https://github.com/lachlan-waugh/demos)
 * [solutions to some of the pracs](https://github.com/lachlan-waugh/6447-Labs)
-* [tooling](/6447/resources/tooling)
-* [pwntools](/6447/resources/pwntools)
-* [pwndbg](/6447/resources/pwndbg)
-* [binaryninja](/6447/resources/binja)
-* [wargames](/6447/resources/wargames)
+* [tooling](resources/tooling)
+* [pwntools](resources/pwntools)
+* [pwndbg](resources/pwndbg)
+* [binaryninja](resources/binja)
+* [wargames](resources/wargames)
 
 &nbsp;
 

@@ -12,6 +12,8 @@ p.close()       # oh man, idk
 pause()         #  
 ```
 
+&nbsp;
+
 ## debugging with gdb
 ```python
 # https://docs.pwntools.com/en/stable/gdb.html
@@ -20,14 +22,21 @@ context.terminal = ['urxvt', '-e', 'sh', '-c']
 
 gdb.attach(p, gdb_cmd)  # attach to an existing process
 gdb.debug('./vuln', )   # spin up a debugger process, stopped at the first instruction
-# if the gdb windows that's spawned is ugly as hell, check out [this](/6447/resources/Xresources)
 ```
+
+> if the gdb windows that's spawned is ugly as hell, check out [this](/6447/resources/Xresources)
+
+&nbsp;
+
+## sending data
 
 ```python
 p.recvuntil(until)  # read input from p until 'line'
 p.sendline(line)    # sends the line to the program
 p.sendlineafter(until, line)   # combines recvuntil() and sendline()
 ```
+
+&nbsp;
 
 ## packing data
 ```python
@@ -38,6 +47,8 @@ bytes()         #
 f''.encode()    #
 b''.decode()    # 
 ```
+
+&nbsp;
 
 ## shellcode
 ```python
@@ -55,6 +66,8 @@ asm("""
 """) # a simple system('/bin/sh') payload
 ```
 
+&nbsp;
+
 ## reading memory address
 magic numbers are bad, use these instead
 ```python
@@ -68,12 +81,16 @@ elf.got['puts']     #
 elf.address = 0xdeadbeef 
 ```
 
+&nbsp;
+
 ## locating what part of your input overwrites certain registers
 ```python
 c = cyclic_gen()
 c.get(n)        # Get a chunk of length n
 c.find(b'caaa') # -> (8, 0, 8): position 8, which is chunk 0 at position 8
 ```
+
+&nbsp;
 
 ## finding ROPTools
 ```python
