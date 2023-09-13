@@ -37,8 +37,6 @@ We expect a high standard of professionalism from you at all times while you are
 ## > whoami
 
 * Lachlan
-* CompSci (Security) / Maths
-* 4th year 👴
 
 ---
 
@@ -51,10 +49,15 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ## places for course discussion
+* probably the discord mostly
+* used to be secedu slack but it is :zombie:
+* I will be more responsive on discord than email
 
-* [seceduau.slack.com/signup](https://seceduau.slack.com/signup)
-    * #cs6447
-    * #cs6447-22t2-t16a
+---
+
+## where to access resources
+* [waugh.zip/6447](https://waugh.zip/6447)
+* tutorials may be recorded, idk yet
 
 {{% /section %}}
 
@@ -68,10 +71,10 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-* Your name, degree, year?
-* Why'd you do the course?
-* What has been your favourite course so far
-* Fun fact?
+* your name, degree, year?
+* why'd you do the course?
+* what has been your favourite course so far
+* have you done a security course before (644[135])?
 * ~~Your credit card number and the 3 wacky digits on the back~~
 
 {{% /section %}}
@@ -81,37 +84,73 @@ We expect a high standard of professionalism from you at all times while you are
 {{% section %}}
 
 ## Course content
-* Wargames (30%)
-* Fuzzer (30%)
-* Final (40%)
+* wargames (30%)
+* fuzzer (30%)
+* final (40%)
 
 ---
 
-## Wargames
-* don't leave them to the last minute, you'll be sad :(
+## wargames
 
 * **flag != full marks**, you need to submit:
-    * The script you used to get it
-    * An explanation: your process/the vulnerability
+    * the script you used to get it
+    * an explanation: your process/the vulnerability
 
+---
+
+## notes on wargames
+* don't leave them to the last minute, you'll be sad :(
 * you probably won't get all the flags
-
 * cool to collaborate/work together, but your flags and scripts/explanations need to be different.
+
+---
+
+## fuzzer
+* group assignment
+* there's also a midpoint submission
 
 {{% /section %}}
 
 ---
 
 ## tooling setup
-* pwntools
-* gdb/pwndbg
 * binary-ninja
+* gdb/pwndbg
+* pwntools
 
 ---
 
 {{% section %}}
 
 ## binary-ninja
+attempts to reconstruct the source code
+
+---
+
+## the most important things
+right-click >
+
+* rename variable
+* display as
+* create structure
+* change type
+* highlight instruction
+
+---
+
+## displaying the information
+there's multiple ways to display the information
+
+* pseudo-C
+* high-level IL
+* disassembly
+* graph view
+
+---
+
+## demos
+* [my-first-program](/6447/demos/my-first-program)
+* [my-second-program](/6447/demos/my-second-program)
 
 {{% /section %}}
 
@@ -119,10 +158,51 @@ We expect a high standard of professionalism from you at all times while you are
 
 {{% section %}}
 
-## gdb
-
+## gdb / pwndbg
+allows you to modify the binary during execution
 
 ---
+
+## pwndbg 
+* a nice plugin for gdb
+* makes the terrible syntax less terrible
+* really easy to install just go [here](https://github.com/pwndbg/pwndbg)
+
+---
+
+## debugging a process 
+how to get started
+
+```bash
+att 1234          # attach to running process 1234
+b 0x1337          # break at address 1337
+break *(main)     # break at the first instruction in main()
+break *(main+12)  # break at the address 12 bytes after main
+c                 # continue until next breakpoint/end program
+si                # step by a single instruction
+fin               # go until end of current function
+```
+
+---
+
+## examining & modifying data
+changing the flow of the application
+
+```bash
+x 0x1337        # examine at 0x1337
+x/20wx 0x1337   # examine 20 words from 0x1337
+x/s 0x1337      # examine string at 0x1337
+set $reg=value  # set register = value ie: set $ebx=1
+set *(int *)($ebp + 0xX)=value # set a local variable
+jump *(0x1234)  # jump to 0x1234 (e.g. start executing there)
+jump *(main)    # jump to main
+```
+
+---
+
+## demos
+* [bad-check](/6447/demos/bad-check)
+* [ripper](/6447/demos/ripper)
 
 {{% /section %}}
 
@@ -158,7 +238,8 @@ p.close()       # oh man, idk
 how do we interact with the program?
 
 ```python
-p.recvuntil(until)           # read input from p until 'line'
+p.recvline()                 # reads one line from the process
+p.recvuntil('line')          # read input from p until 'line'
 p.sendline(line)             # sends the line to the program
 p.sendlineafter(until, line) # combines recvuntil() and sendline()
 ```
@@ -221,7 +302,7 @@ if the window it spawns is ugly a hell, check out [this](https://waugh.zip/6447/
 ## lab
 * set up your tooling
 	* pwntools
-	* pwndbg
+	* gdb/pwndbg
 	* binaryninja
 * sort out groups for the fuzzer.
 
