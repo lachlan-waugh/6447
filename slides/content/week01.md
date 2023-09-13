@@ -4,17 +4,18 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# week01
-### COMP6447 T1[46]A 
+# Tooling Setup
+### 6447 week01
 
 ---
 
 {{% section %}}
+
 ## Good faith policy
 
 We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
@@ -45,7 +46,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 * lachlan.waugh@student.unsw.edu.au
 * [@melon]() on the SecEdu Slack
-* [@lachaln]() on the SecSoc Discord
+* [@melon]() on the SecSoc Discord
 
 ---
 
@@ -69,7 +70,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 * Your name, degree, year?
 * Why'd you do the course?
-* What time did you sleep last night?
+* What has been your favourite course so far
 * Fun fact?
 * ~~Your credit card number and the 3 wacky digits on the back~~
 
@@ -81,32 +82,45 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## Course content
 * Wargames (30%)
-* Fuzzer (20%)
-* Mid-term (10%)
+* Fuzzer (30%)
 * Final (40%)
 
 ---
 
 ## Wargames
-* Don't leave them to the last minute, you'll be sad :(
+* don't leave them to the last minute, you'll be sad :(
 
-* **Flag != full marks**, you need to submit:
+* **flag != full marks**, you need to submit:
     * The script you used to get it
     * An explanation: your process/the vulnerability
 
-* You probably won't get all the flags
+* you probably won't get all the flags
 
-* Cool to collaborate/work together, but your flags and scripts/explanations need to be different.
+* cool to collaborate/work together, but your flags and scripts/explanations need to be different.
+
+{{% /section %}}
+
+---
+
+## tooling setup
+* pwntools
+* gdb/pwndbg
+* binary-ninja
+
+---
+
+{{% section %}}
+
+## binary-ninja
 
 {{% /section %}}
 
 ---
 
 {{% section %}}
-## Lecture content
 
-* Memory layout:
-* Types in memory: pointers, endianness
+## gdb
+
 
 ---
 
@@ -114,13 +128,102 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## Lab
-* Set up your tooling
+{{% section %}}
+
+## pwntools
+a python library to interact with binaries (remotely?)
+
+---
+
+## connecting to a program
+you interact as if it were a python object
+
+```python
+from pwn import *
+
+p = remote('abc.com', 1234) # connect to a remote server
+p = process('./vuln')       # or run a local binary
+
+# do stuff with the binary
+
+pause()         #  
+
+p.interactive() # drops you into an interactive shell
+p.close()       # oh man, idk
+```
+
+---
+
+## sending & receiving data
+how do we interact with the program?
+
+```python
+p.recvuntil(until)           # read input from p until 'line'
+p.sendline(line)             # sends the line to the program
+p.sendlineafter(until, line) # combines recvuntil() and sendline()
+```
+
+---
+
+## packing data
+binaries like ints & bytes, not strings
+
+```python
+p32(0x12345678)          # packs a 32-bit hex number (b'\x78\x56\x34\x12')
+u32(b'\x78\x56\x34\x12') # unpacks a 32-bit (little-endian) number.
+hex(x)           #
+bytes(x)         #
+int(x, 16)
+f''.encode()    #
+b''.decode()    # 
+```
+
+---
+
+## access the binaries data
+how do I grab the function pointers automatically?
+
+```python
+p = process('./program')
+e = ELF('./program')
+e = p.elf
+
+e.symbols['win']   # get the address of "function_name"
+e.got['printf']    # dw about this yet
+e.address = 0x1234 # set the binary base address (for aslr)
+```
+
+---
+
+## debugging with gdb
+you can launch gdb from within pwntools to debug
+
+```python
+# https://docs.pwntools.com/en/stable/gdb.html
+context.arch = 'i386'
+context.terminal = ['urxvt', '-e', 'sh', '-c']
+
+gdb_command = '''
+    break *main
+    si
+'''
+
+gdb.attach(p, cmd)        # attach to an existing process
+gdb.debug('./vuln', cmd)  # spin up a debugger process, stopped at the first instruction
+```
+
+if the window it spawns is ugly a hell, check out [this](https://waugh.zip/6447/resources/Xresources)
+
+{{% /section %}}
+
+---
+
+## lab
+* set up your tooling
 	* pwntools
 	* pwndbg
 	* binaryninja
-* Sort out groups for the fuzzer.
-* If we have time, I'll go through the intro wargame.
+* sort out groups for the fuzzer.
 
 ---
 

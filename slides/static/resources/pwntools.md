@@ -5,7 +5,7 @@
 from pwn import *
 
 r = remote('0.0.0.0', 1234) #
-p = process('./vuln')          #
+p = process('./vuln')       #
 
 p.interactive() # drops you into an interactive shell
 p.close()       # oh man, idk
