@@ -113,6 +113,20 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
+{{% section %}}
+
+## pointers
+![](../assets/img/week01/pointers.png)
+
+---
+
+## pointer arrays
+![](../assets/img/week01/pointer.png)
+
+{{% /section %}}
+
+---
+
 ## tooling setup
 * binary-ninja
 * gdb/pwndbg
@@ -308,4 +322,4 @@ if the window it spawns is ugly a hell, check out [this](https://waugh.zip/6447/
 
 ---
 
-# Walkthrough
+# walkthrough

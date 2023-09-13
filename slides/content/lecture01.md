@@ -501,7 +501,7 @@ at a low level, CPUs see a long strip of bytes
 * Memory is just a range of values CPUs can access
 * CPUs have a few registers for super duper fast access, but these are really
 small and not considered part of memory
-![](../assets/img/stack1d.png)
+![](../lecture01/assets/img/stack1d.png)
 
 ---
 
@@ -510,9 +510,9 @@ RAM is 1D. But thinking about it in 2d can be useful.
 * Memory is often not accessed 1 byte at a time.
 * We care about data structures, not bytes
 
-![](../assets/img/stack32-2d.png)
-![](../assets/img/stack64-2d.png)
-![](../assets/img/address.png)
+![](../lecture01/assets/img/stack32-2d.png)
+![](../lecture01/assets/img/stack64-2d.png)
+![](../lecture01/assets/img/address.png)
 
 ---
 
@@ -556,7 +556,7 @@ Each architecture has Endianness
 ---
 
 ## endianness
-![](../assets/img/endian.png)
+![](../lecture01/assets/img/endian.png)
 
 ---
 
@@ -568,7 +568,7 @@ We only worry about virtual addresses
     * .data (global variables) usually rw-
     * .rodata (constants) usually r–
 
-![](../assets/img/addressspace.png)
+![](../lecture01/assets/img/addressspace.png)
 
 {{% /section %}}
 
@@ -588,7 +588,7 @@ background stuff you should know for the course
 ## the command line
 what is a shell?
 
-![](../assets/img/shell.png)
+![](../lecture01/assets/img/shell.png)
 > soo spooky, no gui ahh
 
 ---
