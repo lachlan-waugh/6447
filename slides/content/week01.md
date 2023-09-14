@@ -163,8 +163,8 @@ there's multiple ways to display the information
 ---
 
 ## demos
-* [binja1](/6447/demos/my-first-program)
-* [binja2](/6447/demos/my-second-program)
+* [binja1](/demos/my-first-program)
+* [binja2](/demos/my-second-program)
 
 {{% /section %}}
 
@@ -215,8 +215,8 @@ jump *(main)    # jump to main
 ---
 
 ## demos
-* [gdb1](/6447/demos/bad-check)
-* [gdb2](/6447/demos/ripper)
+* [gdb1](/demos/bad-check)
+* [gdb2](/demos/ripper)
 
 {{% /section %}}
 
