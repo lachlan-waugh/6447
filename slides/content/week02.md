@@ -74,7 +74,34 @@ The stack grows from high address to low addresses
 
 ---
 
+## what can I overwrite?
+* local variables
+* return addresses
+
+---
+
 ## demo
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## how do I find offsets
+
+---
+
+### binja
+`var_X`
+
+---
+
+### cyclic
+
+---
+
+### ~~brute force~~
 
 {{% /section %}}
 
