@@ -74,13 +74,47 @@ The stack grows from high address to low addresses
 
 ---
 
-## what can I overwrite?
+### what can I overwrite?
 * local variables
 * return addresses
 
 ---
 
-## demo
+### demo
+
+---
+
+### when is a program vulnerable
+what functions cause buffer overflows?
+
+```C
+char buffer[32] a;
+
+// read content
+gets(a);
+fgets(a, 0x32, stdin)
+
+// printf, but write to a string not stdout
+sprintf(a, "%s %s %d", some, random, vars);
+snprintf(a, "%s %s %d", 0x32, and, more, vars);
+```
+
+---
+
+### but that's not all
+it's not just reading content, but also copying?
+
+```C
+char buffer[32] a, buffer[64] b;
+
+// copy contents of b into a 
+strcpy(a, b);
+strncpy(a, b, 64);
+
+// append contents of b onto a
+strcat(a, b);
+strncat(a, b, strlen(a) + strlen(b));
+```
 
 {{% /section %}}
 

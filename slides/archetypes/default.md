@@ -4,29 +4,38 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## we'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# {{ replace .Name "-" " " | title }}
-### T1[68]A COMP6447 
+# TOPIC_NAME
+### 6447 {{ replace .Name "-" " " | title }}
 
 ---
 
-## Lecture content
 {{% section %}}
+
+## lecture recap
 
 {{% /section %}}
 
 ---
 
-## Demo
+{{% section %}}
+
+## weekly content
 
 ---
 
-## Tutorial
+## demo
+
+{{% /section %}}
 
 ---
 
-## Walkthrough
+## tutorial
+
+---
+
+## walkthrough
