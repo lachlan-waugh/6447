@@ -45,25 +45,35 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
+## the stack grows sideways
+jk it grows down
+
+* the stack grows from high address to low addresses
+* so the top of the stack, is lower down in memory
+* this doesn't really change how you exploit, you also just write up the stack
+
+---
+
 ## stack frames
 basic example
 
 ```
-    0x18  [  ARGS  ] <- parameters
-    0x14  [  EIP   ] <- stored return pointer
-    0x10  [  EBP   ] <- stored frame pointer
-    0x0C  [  AAAA  ] <- local vars
-    0x08  [  0001  ] <- an int?
-    0x04  [  DDBF  ] <- a pointer
-    0x00  [  5844  ] <- 4 characters
+    0x18  [   ARGS   ] <- parameters
+    0x14  [   EIP    ] <- stored return pointer
+    0x10  [   EBP    ] <- stored frame pointer
+    0x0C  [ AAAAAAAA ] <- local vars
+    0x08  [ 00000001 ] <- an int?
+    0x04  [ DEADBEEF ] <- a pointer
+    0x00  [ 59454554 ] <- 4 characters
 ```
 
 ---
 
-## actually it grows down
-The stack grows from high address to low addresses
+## where are vars
+referenced in relation to `ebp` e.g. `ebp-0x4`
 
-> but this doesn't really change how you exploit, you also just write up the stack
+* local vars are ~~above~~ later, so `ebp-0x4`
+* arguments are ~~below~~ earlier so `ebp-0x8`
 
 {{% /section %}}
 
@@ -211,12 +221,38 @@ ew cringe security stuff
 
 ---
 
+## PIE (yum)
+position independent execution
+
+* every time you run the binary, it gets loaded into a different location in memory
+* this means just can't simply set EIP to `win()`
+* binja will only show the offset from the binary base
+
+---
+
+### what does it look like
+notice the region is entirely different
+
+```bash
+# no PIE
+$ ./leak
+win() is at 0x8041234
+
+# with PIE
+$ ./leak
+win() is at 0x5650161
+$ ./leak
+win() is at 0x5650911
+```
+
+---
+
 ## ASLR
 address space layout randomization
 
 ---
 
-## using ASLR
+### using ASLR
 ```bash
 # turn aslr off
 sudo sysctl kernel.randomize_va_space=0
@@ -227,10 +263,10 @@ cat /proc/sys/kernel/randomize_va_space
 
 ---
 
-## PIE
-position independent execution
+### wait what's the difference
+ASLR is a kernel protection, PIE is a binary protection
 
-
+* aslr is kinda like PIE for libc
 
 ---
 
@@ -243,7 +279,7 @@ they save the day and make overflows impossible
 
 ---
 
-## canaries in memory
+### canaries in memory
 ```
     0x1C  [  ARGS  ] <- parameters
     0x18  [  EIP   ] <- stored return pointer
@@ -254,15 +290,22 @@ they save the day and make overflows impossible
     0x04  [  AAAA  ]
     0x00  [  AAAA  ]
 ```
-> real value is stored somewhere else, and checked before the function returns
+> real value stored somewhere else, and checked before the function returns
 
 ---
 
-## how do I defeat them
+### how do I defeat them
 memory leaks basically
 
-* leak a function pointer, then just offset to other functions(:wave: PIE/ASLR)
-* leak the canary's value (:wave: stack canaries:)
+* PIE/ASLR: leak function pointer and you're good
+* canaries: leak the canary's value
+* the stack sometimes has some interesting values, but how can we leak them (this comes in week 4)
+
+---
+
+### cool notes
+
+* [these could be helpful](https://ir0nstone.gitbook.io/notes/types/stack/introduction)
 
 {{% /section %}}
 
