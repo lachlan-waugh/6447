@@ -36,33 +36,34 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## register layout
 * AX is the bottom half of EAX (AH/AL), not the top half
-![](/assets/img/week02/registers.png)
 
 ---
 
 ## stack frames
-![](/assets/img/week02/stack-grows-up.png)
-* what register stores the stack pointer, and frame pointer?
-* Why are the parameters stored *below* the frame pointer?
+* what register stores the stack, and frame pointer?
+* why are the parameters stored *below* frame pointer?
 
 ---
 
 ## stack frames
+basic example
+
 ```
-    0x18  [  ARGS  ] <- Parameters
-    0x14  [  EIP   ] <- Stored Return Pointer
-    0x10  [  EBP   ] <- Stored Frame Pointer
-    0x0C  [  AAAA  ] <- these are local vars
-    0x08  [  0001  ] <- maybe an int?
-    0x04  [  DDBF  ] <- maybe a pointer
-    0x00  [  5844  ] <- maybe 2 characters
+    0x18  [  ARGS  ] <- parameters
+    0x14  [  EIP   ] <- stored return pointer
+    0x10  [  EBP   ] <- stored frame pointer
+    0x0C  [  AAAA  ] <- local vars
+    0x08  [  0001  ] <- an int?
+    0x04  [  DDBF  ] <- a pointer
+    0x00  [  5844  ] <- 4 characters
 ```
 
 ---
 
 ## actually it grows down
 The stack grows from high address to low addresses
-![](/assets/img/week02/stack-grows-down.png)
+
+> but this doesn't really change how you exploit, you also just write up the stack
 
 {{% /section %}}
 
@@ -71,12 +72,36 @@ The stack grows from high address to low addresses
 {{% section %}}
 
 ## buffer overflows
+tldr: trust is bad
+
+---
+
+### reading into a buffer
+what happens when you write more content than a buffer can hold
+
+* mordern languages might just resize (python)
+* some languages might throw an exception
+* maybe it would crash? (sometimes it will)
+* C (& lower-level languages) just kinda run with it
+
+---
+
+### overflowing
+so where exactly does that content go
+
+* we've talked about stack frames
+* if we write more content, it'll just start overwriting other content on the stack
+    * other variables
+    * control stuff (EBP, EIP)
 
 ---
 
 ### what can I overwrite?
 * local variables
 * return addresses
+* ~~content from other processes?~~
+
+> this could allow us to change the application flow
 
 ---
 
@@ -127,15 +152,53 @@ strncat(a, b, strlen(a) + strlen(b));
 ---
 
 ### binja
-`var_X`
+binja is really nice and tells us the distance
+
+![](../assets/img/week02/binja.png)
+
+* int is 0xC (12) bytes away from the return address
+* buffer is 0x34 (52) bytes away
+
+> if we wrote 40 bytes of padding, and one additional byte into the buffer, we would overwrite the int
 
 ---
 
 ### cyclic
+kinda like bruteforce but smart
+
+* what if we gave a random string as input
+* then found what part of the string overwrote EIP
+
+```bash
+# gets(buffer)
+$ AAAABBBBCCCCDDDDEEEEFFFF
+
+# we SIGSEGV at EIP = EEEE
+```
+> then we need 16 bytes of padding before the return address
 
 ---
 
-### ~~brute force~~
+### how to generate random strings
+
+pwntools
+```python
+#  
+cyclic(20) # generate a chunk of length 20
+
+#   
+c = cyclic_gen()
+c.get(n)        # get a chunk of length n
+c.find(b'caaa') # (8,0,8): pos 8, which is chunk 0 at pos 8
+```
+
+bash
+```bash
+# you can also do it on commandline
+cyclic 12      # aaaaaaabaaac
+cyclic -l aaab # -> 1  = find chunk
+cyclic -o aaae # -> 13 = find offset
+```
 
 {{% /section %}}
 
@@ -166,6 +229,8 @@ cat /proc/sys/kernel/randomize_va_space
 
 ## PIE
 position independent execution
+
+
 
 ---
 
