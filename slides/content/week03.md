@@ -4,13 +4,13 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# week03
-### T1[68]A COMP6447 
+# shellcode
+### 6447 week03 
 
 ---
 
@@ -24,41 +24,23 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Programming? in my security??
-* Last week: jumping to a win() function
-* This week: there's no win(), what do?
-
----
-
 {{% section %}}
 
-
-## Lecture content
-* Stack frames (again)
-* Harder reverse engineering
-* Shellcode
-
----
-
-## Stack frames (again)
-```
-    0x18  [  ARGS  ] <- Parameters
-    0x14  [  EIP   ] <- Stored Return Pointer
-    0x10  [  EBP   ] <- Stored Frame Pointer
-    0x0C  [  AAAA  ] <- these are local vars
-    0x08  [  AAAA  ]
-    0x04  [  AAAA  ]
-    0x00  [  AAAA  ]
-```
+## todo
+* harder reverse engineering
+* shellcode
+* memory protections (again)
 
 ---
 
-## Harder re
+### harder re
+instructions can give context to the variables
+
 ![](/assets/img/week03/operation_implications.png)
 
 ---
 
-## Harder re #2
+### harder re #2
 * what's differs between the instructions below?
 ```
     mov eax, dword ptr [esp]
@@ -68,48 +50,116 @@ We expect a high standard of professionalism from you at all times while you are
     mov al, [esp]
 ```
 
+---
+
+### todo: more stuff
+
 {{% /section %}}
 
 ---
 
 {{% section %}}
 
-## 🐚 Shellcode
+## buffer overflows
+
+---
+
+### last week recap
+* last week we had a nice win() function to jump to (0xDEADBEEF)
+* so all we had to do was overwrite EIP with that function pointer
+
+```
+win is at 0xDEADBEEF. gimme some data though
+> AAAAAAAAAAAAAAAAAAA\xEF\xBE\xAD\xDE
+
+wait how'd you get here?
+$ rm -rf /*
+```
+
+---
+
+### last week recap 
+what does it look like in memory
+
+```php
+    0x18  [   ARGS   ] < 
+    0x14  [ DEADBEEF ] <- EIP
+    0x10  [ 41414141 ] <- EBP
+    0x0C  [ 41414141 ] 
+    0x08  [ 41414141 ]
+    0x04  [ 41414141 ]
+    0x00  [ 41414141 ] <- our buffer
+```
+
+---
+
+### but now, there is no win function
+* so we can't jump to a win function anymore
+* so what if we just write our own win function?
+
+> programming in my security??
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## shellcode
+
+---
+
+### 🐚shellcode
 * Q: What is a win() function (or any function)?
 
 ---
 
-## 🐚 Shellcode
-* Q: What is a win() function (or any function)?
-* A: It's just a sequence of assembly instructions
+### 🐚shellcode
+* Q: what is a win() function (or any function)?
+* A: it's just a sequence of assembly instructions
 
 ---
 
-## 🐚 Shellcode
-* Q: What is a win() function (or any function)?
-* A: It's just a sequence of assembly instructions
-    * Assembly is just bytes
+### 🐚shellcode
+* Q: what is a win() function (or any function)?
+* A: it's just a sequence of assembly instructions
+    * assembly is just bytes
 
 ---
 
-## 🐚 Shellcode
-* Q: What is a win() function (or any function)?
-* A: It's just a sequence of assembly instructions
-    * Assembly is just bytes
-    * Bytes is just data (which we can send)
+### 🐚shellcode
+* Q: what is a win() function (or any function)?
+* A: it's just a sequence of assembly instructions
+    * assembly is just bytes
+    * bytes is just data (which we can send)
 
 ---
 
-## 🐚 Shellcode
-* Q: What is a win() function (or any function)?
-* A: It's just a sequence of assembly instructions
-    * Assembly is just bytes
-    * Bytes is just data (which we can send)
-* Hence if we can write some assembly instructions, and point EIP at them, we can  get code execution (e.g. read/write, pop a shell)!
+### 🐚shellcode
+* Q: what is a win() function (or any function)?
+* A: it's just a sequence of assembly instructions
+    * assembly is just bytes
+    * bytes is just data (which we can send)
+* if we write some assembly instructions, and point EIP at them, we can  get code execution (e.g. read/write, pop a shell)!
 
 ---
 
-## Some helpful instructions :)
+### what does this like look
+in memory
+
+```php
+    0x48  [   ARGS   ] < 
+    0x44  [ 00000030 ] <- EIP
+    0x40  [ AA094101 ] <- hacks nasa? 
+    0x3C  [ 12350ADA ] <- calls back to a c2
+    0x38  [ 48392918 ] <- deploys malware on the system
+    0x34  [ 59059474 ] <- pops a shell
+    0x30  [ 56486420 ] <- our buffer
+```
+
+---
+
+### some helpful instructions :)
 hopefully you've seen them in 1521/MIPS?
 ```
     mov a, b        # a = b
@@ -123,39 +173,68 @@ hopefully you've seen them in 1521/MIPS?
 ```
 [syscall table](http://cgi.cse.unsw.edu.au/~z5164500/syscall/)
 
+---
+
+### what is a syscall
+* we don't have privilege to perform certain actions, but the kernel does
+    * e.g. reading/writing, networking, creating processes 
+* a syscall is kinda like a kernel API to invoke these services on our behalf
+
+---
+
+### idc, how do we /bin/sh
+```
+eax = 0xB (11)
+ebx = char __user *
+ecx = char __user * __user *
+edx = char __user * __user *
+esi = struct pt_regs *
+```
+
+---
+
+### most of that stuff doesn't matter
+```
+eax = OxB (important, the sycall number)
+ebx = *("/bin/sh") (important, this is the program to run) 
+ecx = NULL (not important, this is arguments to that program)
+edx = NULL (not important, this is environment variables)
+esi = NULL (not important, idk what this is)
+```
+
+---
+
+### so how do we do that
+one example
+
+```
+xor eax, eax        # eax = 0
+add eax, 0xB        # eax = 12
+mov ebx, 0x8041234  # imagine that is the pointer to /bin/sh
+xor ecx, ecx        # ecx = NULL
+xor edx, edx        # edx = NULL
+xor esi, esi        # esi = NULL
+
+int 0x80            # invoke syscall
+```
+
+---
+
 {{% /section %}}
+
+---
+
+## demo
+* poppin a shell with ./runner
 
 ---
 
 {{% section %}}
 
-## 🥚 Egghunter
-Shellcode is bytes. What if there isn't enough space for a meaningful payload in an overflowable buffer?
-* If we have a big non-overflowable buffer, we can store the payload there (and an egg).
-* Then in our overflowable buffer, we put a small payload which will search for/execute the egg.
-
----
-
-## 🍳 Omelette egghunter
-What if we don't have a buffer big enough for the entire payload?
-* If we have a number of small buffers
-    * we use our egghunter to find each of those eggs.
-    * chain their execution, to execute our full payload.
-
-{{% /section %}}
-
----
-
-## Demo
-* Poppin a shell with ./runner
-
----
-
-{{% section %}}
-
-## My payload isn't working, help
+## my payload isn't working, help
 * no /bin/sh's?
 * NOPNOPNOPNOPNOPNOP
+* egghunters
 
 ---
 
@@ -185,7 +264,7 @@ nib/  |  push 0x6E69622F
 
 &nbsp;
 
-* However, what happens to our null byte?
+> However, what happens to our null byte?
 
 ---
 
@@ -205,7 +284,7 @@ push eax
 
 ---
 
-## Alternatively
+## alternatively
 
 ```
 call pwn
@@ -224,7 +303,7 @@ full payload [here](https://github.com/lachlan-waugh/6447/blob/main/demos/labs/w
 
 ---
 
-## Why does that work?
+## why does that work?
 * `call func` will push the return address (the address of the next instruction) onto the stack
 
 * the return address of `call pwn` would be &pwn
@@ -235,19 +314,22 @@ source: [here](https://www.aldeid.com/wiki/X86-assembly/Instructions/call)
 
 ---
 
-# Alternatively #2
-* All of the strings in the program are still accessible to you
-* so you could just feed the addresses strings in (if any of them are useful of course).
+# alternatively #2
+* all of the strings in the program are still accessible to you
+* so you could just feed their address in (if any of them are useful of course).
+
+{{% /section %}}
 
 ---
 
+{{% section %}}
 # NOPNOPNOP
 
 ---
 
-## nopsledin' away
-Sometimes 
-* we won't be given the exact address of the start of our payload, or
+### nopsledin' away
+sometimes 
+* we don't know exactly where our payload will be, or
 * the address is a random distance into our buffer.
 
 &nbsp;
@@ -260,14 +342,12 @@ the start of our input             the leaked address
 
 ---
 
-## nopsledin' away
-
+### nopsledin' away
 `nop` (no-operation) `\x90` is a single-byte instruction, which does nothing
 
 &nbsp;
 
 So what if we padded our input out with those `nops` (similar to padding we used to reach EIP)
-
 
 ```
 the start of our input             the leaked address
@@ -275,12 +355,72 @@ the start of our input             the leaked address
 \x90 \x90 \x90 \x90 \x90 \x90 \x90 \xDE \xAD \xBE \xEF \xCA \xFE
 ```
 
+---
+
+### what if no nop
+sometimes you might get WAFed
+
+* if `\x90` (NOOP) is blocked
+* you can just use something else e.g. `xchg eax, eax`
+* or any meaningless (for your use) one-byte instruction
+
 {{% /section %}}
 
 ---
 
-## Tutorial
-Now it's your turn!
+{{% section %}}
+
+## 🥚 egghunter
+* Q: what if our buffer isn't big enough for a payload?
+
+---
+
+## 🥚 egghunter
+* Q: what if our buffer isn't big enough for a payload?
+    * if we have a big non-overflowable buffer, we can store the payload there (and an egg).
+
+---
+
+## 🥚 egghunter
+* Q: what if our buffer isn't big enough for a payload?
+    * if we have a big non-overflowable buffer, we can store the payload there (and an egg).
+    * then in our overflowable buffer, we put a small payload which will search for & execute the egg.
+
+---
+
+## 🍳 omelette egghunter
+* Q: what if we don't any buffer big enough?
+
+---
+
+## 🍳 omelette egghunter
+* Q: what if we don't any buffer big enough?
+* A: if we have a number of small buffers
+    * store a bit of the payload in each buffer
+
+---
+
+## 🍳 omelette egghunter
+* Q: what if we don't any buffer big enough?
+* A: if we have a number of small buffers
+    * store a bit of the payload in each buffer
+    * use the egghunter to find each of those eggs.
+
+---
+
+## 🍳 omelette egghunter
+* Q: what if we don't any buffer big enough?
+* A: if we have a number of small buffers
+    * store a bit of the payload in each buffer
+    * use the egghunter to find each of those eggs.
+    * chain their execution, to execute our full payload.
+
+{{% /section %}}
+
+---
+
+## tutorial
+now it's your turn!
 * {{% fragment %}}Print "hello world\n" to stdout.{{% /fragment %}}
 * {{% fragment %}}Print a user entered string (from stdin) to stdout.{{% /fragment %}}
 * {{% fragment %}}Open a file 'flag.txt', read 10 bytes from it, print them, and close the file{{% /fragment %}}
@@ -288,4 +428,4 @@ Now it's your turn!
 
 ---
 
-## Walkthrough
+## walkthrough
