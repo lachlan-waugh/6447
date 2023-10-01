@@ -239,8 +239,7 @@ esi = NULL (not important, idk what this is)
 one example
 
 ```
-xor eax, eax        # eax = 0
-add eax, 0xB        # eax = 12
+mov eax, 0xB        # eax = 12
 mov ebx, 0x8041234  # imagine that is the pointer to /bin/sh
 xor ecx, ecx        # ecx = NULL
 xor edx, edx        # edx = NULL
