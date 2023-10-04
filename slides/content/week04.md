@@ -4,13 +4,13 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# Week04
-### T1[68]A COMP6447 
+# Format Strings
+### 6447 week04
 
 ---
 
@@ -191,11 +191,11 @@ printf("%2x", a, b, c);
 
 ---
 
-## Demo
+## demo
 
 ---
 
-## Tutorial
+## tutorial
 and stack-dump walkthrough
 
 ---

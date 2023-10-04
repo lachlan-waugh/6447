@@ -27,7 +27,7 @@ We expect a high standard of professionalism from you at all times while you are
 {{% section %}}
 
 ## todo
-* harder reverse engineering
+* reverse engineering
 * shellcode
 * memory protections (again)
 
@@ -41,7 +41,8 @@ instructions can give context to the variables
 ---
 
 ### harder re #2
-* what's differs between the instructions below?
+what's different between these instructions?
+
 ```
     mov eax, dword ptr [esp]
     mov eax, word ptr [esp]
@@ -52,7 +53,11 @@ instructions can give context to the variables
 
 ---
 
-### todo: more stuff
+### finding offsets
+some people seemed to be confused
+
+* binja: var\_30 means the variable is 0x30 (48) bytes away from the return address
+* assembly: variable ebp-0x2B means it's 0x2B (44) bytes away from stored EBP
 
 {{% /section %}}
 
@@ -111,12 +116,13 @@ payload += b'efgh
 
 ---
 
-### why wasn't this taught last week??
-terrible moron tutor perhaps
+### why wasn't this taught last week
+you should understand what the tooling does
 
 * there's a lot the tooling can do
-* but it's important to understand what it does
+* but it's important to understand the fundamentals of why
 * e.g. `shellcraft.i386.linux.sh()`
+* don't use it
 
 ---
 
@@ -239,8 +245,7 @@ esi = NULL (not important, idk what this is)
 one example
 
 ```
-xor eax, eax        # eax = 0
-add eax, 0xB        # eax = 12
+mov eax, 0xB        # eax = 12
 mov ebx, 0x8041234  # imagine that is the pointer to /bin/sh
 xor ecx, ecx        # ecx = NULL
 xor edx, edx        # edx = NULL

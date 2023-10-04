@@ -282,14 +282,15 @@ they save the day and make overflows impossible
 ### canaries in memory
 ```
     0x1C  [  ARGS  ] <- parameters
-    0x18  [  EIP   ] <- stored return pointer
-    0x14  [ CANARY ] <- canary goes here 
-    0x00  [  EBP   ] <- stored frame pointer
+    0x18  [   EIP  ] <- stored return pointer
+    0x14  [   EBP  ] <- stored frame pointer
+    0x00  [ canary ] <- canary goes here
     0x0C  [  AAAA  ] <- these are local vars
     0x08  [  AAAA  ]
     0x04  [  AAAA  ]
     0x00  [  AAAA  ]
 ```
+
 > real value stored somewhere else, and checked before the function returns
 
 ---

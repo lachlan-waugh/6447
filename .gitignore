@@ -1,3 +1,5 @@
 /slides/public
 demos/lib/pycache
 .gdb_history
+
+demos/shellcode/*
