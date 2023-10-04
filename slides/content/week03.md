@@ -4,7 +4,7 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at 1[68]:05
+## We'll get started at 18:05
 
 ---
 
@@ -65,10 +65,11 @@ instructions can give context to the variables
 ---
 
 ### last week recap
-* last week we had a nice win() function to jump to (0xDEADBEEF)
-* so all we had to do was overwrite EIP with that function pointer
+* last week we had a nice win() function to jump to
 
-```
+* so we overwrite EIP with that function pointer
+
+```php
 win is at 0xDEADBEEF. gimme some data though
 > AAAAAAAAAAAAAAAAAAA\xEF\xBE\xAD\xDE
 
@@ -82,7 +83,7 @@ $ rm -rf /*
 what does it look like in memory
 
 ```php
-    0x18  [   ARGS   ] < 
+    0x18  [   ARGS   ] 
     0x14  [ DEADBEEF ] <- EIP
     0x10  [ 41414141 ] <- EBP
     0x0C  [ 41414141 ] 
@@ -90,6 +91,32 @@ what does it look like in memory
     0x04  [ 41414141 ]
     0x00  [ 41414141 ] <- our buffer
 ```
+
+---
+
+### some suggestions
+dont hardcode stuff
+
+```python
+payload = fit({10: b'abcd', 100: b'efgh'}, filler=b'A')
+
+# kinda equivalent to
+payload = b'A' * 10
+payload += b'abcd'
+payload += b'A' * (100 - len(payload))
+payload += b'efgh
+
+# but much more readable
+```
+
+---
+
+### why wasn't this taught last week??
+terrible moron tutor perhaps
+
+* there's a lot the tooling can do
+* but it's important to understand what it does
+* e.g. `shellcraft.i386.linux.sh()`
 
 ---
 
@@ -183,6 +210,8 @@ hopefully you've seen them in 1521/MIPS?
 ---
 
 ### idc, how do we /bin/sh
+basically this
+
 ```
 eax = 0xB (11)
 ebx = char __user *
@@ -193,7 +222,9 @@ esi = struct pt_regs *
 
 ---
 
-### most of that stuff doesn't matter
+### most of those don't matter
+this is how you invoke `/bin/sh`
+
 ```
 eax = OxB (important, the sycall number)
 ebx = *("/bin/sh") (important, this is the program to run) 
@@ -248,7 +279,7 @@ nib/  |  push 0x6E69622F
 
 &nbsp;
 
-* What if:
+* what if:
     * the program stops reading at a null byte/newline?
     * the program strips/parses them out?
 
