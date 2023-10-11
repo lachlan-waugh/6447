@@ -1,16 +1,16 @@
 ---
-title: "Week05"
+title: "05: programming errors/fuzzing"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# Week05
-### T1[68]A COMP6447 
+# fuzzing & programming errors
+### 6447 week05
 
 ---
 
@@ -48,10 +48,10 @@ We expect a high standard of professionalism from you at all times while you are
 ## Wargame marks so far
 |         |  `avg` |  `3/3` |
 | ------- | ------ | ------ |
-| `war01` | `2.83` | `(50)` |
-| `war02` | `2.35` | `(15)` |
-| `war03` | `2.34` | `(20)` |
-| `total` | `6.95` | `(9)`  |
+| `war01` | `` | `` |
+| `war02` | `` | `` |
+| `war03` | `` | `` |
+| `total` | `` | ``  |
 |                           |
 
 ---
@@ -361,7 +361,7 @@ for(int i = 0; i <= 10; i++) {
 ---
 
 ## Tutorial
-> find the vulns [here](https://webcms3.cse.unsw.edu.au/COMP6447/22T2/resources/75134)
+> find the vulns [here](https://webcms3.cse.unsw.edu.au/COMP6447/22T3/resources/75134)
 * consider the impact of the vulns
 
 ---
