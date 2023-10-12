@@ -18,7 +18,7 @@ outputs: ["Reveal"]
 
 We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
 
-*TLDR: Don't be a ~~dick~~ jerk*
+*TLDR: don't be a ~~dick~~ jerk*
 
 [sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
 
@@ -26,40 +26,45 @@ We expect a high standard of professionalism from you at all times while you are
 
 {{% section %}}
 ## Fuzzer (Group Project)
-* [[Major Project](https://webcms3.cse.unsw.edu.au/COMP6447/22T2/resources/75130)] on WebCMS
+* [[Major Project](https://webcms3.cse.unsw.edu.au/COMP6447/23T3/resources/92851)] on WebCMS
 
 ---
 
-### Due dates
-* *Midpoint*: end of week07
-* *Final*: end of week10
+### okay
+> ramble about fuzzers
+
+---
+
+### due dates
+* *midpoint*: end of week07
+* *final*: end of week10
 
 ---
 
 ### Groups
-* Register [here](https://forms.gle/2VkyJ4euXdjtoZAYA) (linked on WebCMS)
-* Each group, just email me whos in your group
-* Cross-tutorial groups are fine
+* register [here](https://forms.gle/7As9vpV47JB1KSCU8) (linked on WebCMS)
+* each group, just email me whos in your group
+* cross-tutorial groups are fine
 
 {{% /section %}}
 
 ---
 
-## Wargame marks so far
+## wargame marks so far
 |         |  `avg` |  `3/3` |
 | ------- | ------ | ------ |
-| `war01` | `` | `` |
-| `war02` | `` | `` |
-| `war03` | `` | `` |
-| `total` | `` | ``  |
-|                           |
+| `war01` | `2.50` |  `18`  |
+| `war02` | `2.25` |  `??`  |
+| `war03` | `1.80` |  `??`  |
+| `total` | `6.55` |  `??`  |
 
 ---
 
-# Source Code Auditing
+# source Code Auditing
 
 ---
 
+### what do these code blocks do?
 ```C
     int flags = 1;
     if (flags & FLAG){
@@ -91,8 +96,26 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
+### is this code the same?
+
+```C
+flags = flags + 1 % 2;
+printf("Flags: %d\n",flags);
+```
+
+&nbsp;
+
+```C
+flags = flags++ % 2;
+printf("Flags: %d\n",flags);
+```
+
+---
+
 {{% section %}}
+
 ### where vuln?
+
 ```C
 char pt[] = "THISISSOMEDATAOFSOMESORT";
 char env_script_name[] = "USER_CONTROLLED_ENV1";
@@ -234,7 +257,8 @@ while (i < n)
 ---
 
 {{% section %}}
-## Integer overflows
+
+### why is this bad?
 ```C
 u_int strLen = strlen(userinput);
 int buffsize = strLen + 11;
@@ -246,7 +270,21 @@ strncpy(mem[10],userinput,strLen);
 
 ---
 
-## It's here
+### why is this bad?
+```C
+u_int strLen = strlen(userinput);
+int buffsize = strLen + 11;
+
+char *mem = malloc(buffsize);
+strncpy(mem,"this/path/",10);
+strncpy(mem[10],userinput,strLen);
+```
+
+> its an integer overflow
+
+---
+
+## it's here
 
 ```C
 u_int strLen = strlen(userinput);
@@ -265,7 +303,7 @@ what if user input is super long, (e.g. INT_MAX?)
 
 ---
 
-## Format strings
+## format strings
 ```C
 char *var;
 printf(var);
@@ -280,7 +318,7 @@ vsnprintf(var2, strlen(var2), var);
 ## Heap
 {{% section %}}
 
-## Use-after-free
+### why is this bad?
 ```C
 char *var malloc(10);
 free(var);
@@ -289,7 +327,18 @@ printf("%s\n", var);
 
 ---
 
-## Double-free
+### why is this bad?
+```C
+char *var malloc(10);
+free(var);
+printf("%s\n", var);
+```
+
+> use-after-free
+
+---
+
+### why is this bad?
 ```C
 char *var malloc(10);
 free(var);
@@ -297,21 +346,48 @@ char *var2 malloc(10);
 free(var);
 ```
 
+---
+
+### why is this bad?
+```C
+char *var malloc(10);
+free(var);
+char *var2 malloc(10);
+free(var);
+```
+> double-free
+
 {{% /section %}}
 
 ---
-
-## Null pointer dereferences
+ 
 {{% section %}}
+
+### why is this bad?
 
 ```C
 char *a;
-vuln_syscall_sets_a_NULL(a);
+a = NULL;
 char b[] = "string";
 strcpy(a, b);
 ```
 
 ---
+
+### why is this bad?
+
+```C
+char *a;
+a = NULL;
+char b[] = "string";
+strcpy(a, b);
+```
+
+> null pointer dereferences
+
+---
+
+### how about this?
 
 ```C
 char *a, b[] = "string";
@@ -333,7 +409,7 @@ printf("%s\n",a);
 ---
 
 {{% section %}}
-## Off-by-one
+### why is this bad? 
 ```C
 char *var = malloc(10);
 if(var == NULL) return;
@@ -342,6 +418,24 @@ for(int i = 0; i <= 10; i++) {
     var[i] = argv[2][i];
 }
 ```
+
+---
+
+### why is this bad? 
+```C
+//          vvvvvvvvvv
+char *var = malloc(10);
+//          ^^^^^^^^^^
+if(var == NULL) return;
+
+//             vvvvvvv
+for(int i = 0; i <= 10; i++) {
+//             ^^^^^^^
+    var[i] = argv[2][i];
+}
+```
+
+> off-by-one
 
 ---
 
@@ -361,10 +455,6 @@ for(int i = 0; i <= 10; i++) {
 ---
 
 ## Tutorial
-> find the vulns [here](https://webcms3.cse.unsw.edu.au/COMP6447/22T3/resources/75134)
+> find the vulns [here](https://waugh.zip/6447/demos/src)
 * consider the impact of the vulns
 
----
-
-## Walkthrough
-> egghunter
