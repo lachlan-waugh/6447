@@ -4,6 +4,7 @@
 * week03 [slides](week03) [recording](https://youtu.be/a-cwmrc7sjo)
 * week04 [slides](week04) ~~[recording]()~~
 * week05 [slides](week05) ~~[recording]()~~
+* week07 [slides](week07) ~~[recording]()~~
 
 &nbsp;
 
