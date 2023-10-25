@@ -43,14 +43,14 @@ We expect a high standard of professionalism from you at all times while you are
 ## A summary so far
 {{% section %}}
 
-### Weeks 2/3
+### weeks 2/3
 * buffer overflow &#8594; `win()`
 * shellcode (building a `win()`)
 
 &nbsp;
 
-### Now:
-* ROP (building a `win()` again (not in the stack))
+### now:
+* rop/ret2 (building a `win()` again (not in the stack))
 
 ---
 
@@ -79,7 +79,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## ROP
 {{% section %}}
-* Instead of writing our own assembly instruction, we re-use existing instructions from the program.
+* instead of writing our own assembly instruction, we re-use existing instructions from the program.
 
 * We use instructions preceding a `ret` (gadgets), so we can jump to them, execute them, and jump back.
 
@@ -212,7 +212,7 @@ push esp, pop ebx; ret;
 * what if the program already calls system?
 ```
 CALL SYSTEM
-PUSH &('/bin/sh)
+PUSH &('/bin/sh')
 ```
 
 ---
@@ -225,18 +225,18 @@ PUSH &('/bin/sh)
 
 ## Ret2Libc
 {{% section %}}
-### What if the program doesn't have (good) enough gadgets?
-* We can jump to our own code
-* We can also jump to any used libraries
+### what if the program doesn't have (good) enough gadgets?
+* we can jump to our own code
+* we can also jump to any used libraries
 
 ---
 
-* LIBC stores all of the useful *"builtin"* functionality (`printf`, `gets`, etc)
-* That's a whole lot of gadgets we could utilise
+* libc stores all of the useful *"builtin"* functionality (`printf`, `gets`, etc)
+* that's a whole lot of gadgets we could utilise
 
 ---
 
-* For a payload we'll need to find:
+* for a payload we'll need to find:
     * the base address
     * the libc version (to determine offsets)\*
     * a helpful function
@@ -245,9 +245,9 @@ PUSH &('/bin/sh)
 
 ---
 
-### Pwntools
-* Alternatively, you can do it with `pwntools`
-* Similar to setting binary base, you set the libc base
+### pwntools
+* alternatively, you can do it with `pwntools`
+* similar to setting binary base, you set the libc base
 ```python
 libc = ELF("libc_version.so")
 libc.address = printf_leak - libc.symbols['printf']
@@ -259,8 +259,22 @@ libc.symbols['system'] # etc...
 
 ---
 
+### helpful stuff
+* you can search for stuff in pwntools
+* use the functions elf.search() and next()
+```python
+elf = ELF('binary_file')
+# you can find strings
+next(elf.search(b'/bin/sh'))
+
+# you can also find gadgets
+next(elf.search(asm(b'mov eax, 0xb; ret', os='linux', arch=e.arch)))
+```
+
+---
+
 ## Demo
-> Ret2Libc
+> ret2libc
 
 {{% /section %}}
 
@@ -272,4 +286,4 @@ libc.symbols['system'] # etc...
 ---
 
 ## Walkthrough
-> elon-musk
+> image-viewer?
