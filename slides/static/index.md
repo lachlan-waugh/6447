@@ -5,7 +5,7 @@
 * week4 [slides](week4) ~~[recording]()~~
 * week5 [slides](week5) ~~[recording]()~~
 * week7 [slides](week7) ~~[recording]()~~
-* week8 [slides](week7) ~~[recording]()~~
+* week8 [slides](week8) ~~[recording]()~~
 
 &nbsp;
 
