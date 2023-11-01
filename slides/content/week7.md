@@ -54,7 +54,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Buffer overflows
+### buffer overflows
 * Abusing functions which can read more data than they have allocated memory for (`gets`, `strcpy`)
 
 * Allows us to control the stack (local vars, ret)
@@ -65,7 +65,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Shellcode
+### shellcode
 * Once we can control execution of the program (e.g. changing the return address), where do we go?
     * We trick it into treating our user-supplied as code.
     * Then jump to the code
@@ -77,13 +77,55 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## ROP
 {{% section %}}
+## ROP
 * instead of writing our own assembly instruction, we re-use existing instructions from the program.
 
 * We use instructions preceding a `ret` (gadgets), so we can jump to them, execute them, and jump back.
 
 * We chain these gadgets so we can execute a full payload, by: jumping to first one, executing it, jumping back, jumping to the second one, etc.
+
+---
+
+### how does ret work?
+it grabs what esp is pointing to, and jumps there
+
+```
+pop ecx
+jmp ecx
+```
+
+> esp is integral to our ropchain
+
+---
+
+### why does it jump to esp?
+ret is the last thing in a function call
+
+* it's called after:
+    * local vars are cleaned up, and
+    * `ebp` is grabbed off the stack
+* so `esp` should is pointing at the return address
+
+```php
+    0x18  [   ARGS   ] <- parameters
+    0x14  [   EIP    ] <- +++esp now points here+++
+    0x10  [   EBP    ] <- cleaned up by leave
+    0x0C  [ AAAAAAAA ] <- local vars are dealloc'd
+```
+
+---
+
+### how does a ropchain work
+it's going to execute each gadget, then grab the next one off the stack, and execute that
+```php
+    0x18  [ GADGET_3 ] <- parameters
+    0x18  [ GADGET_2 ] <- parameters
+    0x14  [ GADGET_1 ] <- +++esp now points here+++
+    0x10  [   EBP    ] <- cleaned up by leave
+    0x0C  [ AAAAAAAA ] <- local vars are dealloc'd
+```
+
 
 ---
 
@@ -183,14 +225,14 @@ p32(0xA)        // 10
 
 ---
 
-### Getting the stack address
+### getting the stack address
 we could grab the stack pointer, and store it in `ebx`
 ```C
 push esp, pop ebx; ret;
 // now ebx will store &esp
 ```
 
-> Generally both instructions will need to be in the same gadget
+> generally both instructions will need to be in the same gadget
 
 ---
 
