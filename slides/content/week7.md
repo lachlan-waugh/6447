@@ -1,16 +1,16 @@
 ---
-title: "Week07"
+title: "07: rop"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# Week07
-### T1[68]A COMP6447 
+# return oriented programming
+### 6447 week07
 
 ---
 

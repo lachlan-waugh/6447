@@ -1,10 +1,11 @@
 ## slides
-* week01 [slides](week01) [~~recording~~]()
-* week02 [slides](week02) [~~recording~~]()
-* week03 [slides](week03) [recording](https://youtu.be/a-cwmrc7sjo)
-* week04 [slides](week04) ~~[recording]()~~
-* week05 [slides](week05) ~~[recording]()~~
-* week07 [slides](week07) ~~[recording]()~~
+* week1 [slides](week1) [~~recording~~]()
+* week2 [slides](week2) [~~recording~~]()
+* week3 [slides](week3) [recording](https://youtu.be/a-cwmrc7sjo)
+* week4 [slides](week4) ~~[recording]()~~
+* week5 [slides](week5) ~~[recording]()~~
+* week7 [slides](week7) ~~[recording]()~~
+* week8 [slides](week7) ~~[recording]()~~
 
 &nbsp;
 
@@ -28,9 +29,7 @@
 
 ## Community stuff
 * Email me @ [lachlan.waugh@student.unsw.edu.au]()
-* Join the [slack](https://seceduau.slack.com/signup) (im [@melon]()), then join the servers:
-    * #cs6447
-    * #cs6447-22t2-t16a
+* Join the [discord](TODO) (im `@melon`)
 * pls dont contact Adam / the course account for random stuff or I'll get fired.
 
 &nbsp;
