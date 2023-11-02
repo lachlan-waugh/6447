@@ -1,5 +1,5 @@
 ---
-title: "07: rop"
+title: "7: rop"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -10,7 +10,7 @@ outputs: ["Reveal"]
 
 {{< slide class="center" >}}
 # return oriented programming
-### 6447 week07
+### 6447 week7
 
 ---
 

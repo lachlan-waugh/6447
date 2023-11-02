@@ -1,16 +1,16 @@
 ---
-title: "Week08"
+title: "8: heap"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
 {{< slide class="center" >}}
-# Week08
-### T1[68]A COMP6447 
+# heap exploitation
+### 6447 week8 
 
 ---
 
@@ -24,19 +24,22 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Chunkz
+### chunks
 `malloc()` returns chunks (blocks of memory)
+
+* chunks can either be **in-use** or **free**
+* each has different metadata associated with it
 
 ---
 
-### In-use chunks
+### in-use chunks
 {{% section %}}
 
 <img src="../assets/img/week08/in-use.png" height="500px" />
 
 ---
 
-#### What is the "metadata"
+#### what is the "metadata"
 * size of the chunk
 * last 3 bits:
     * 1: chunk is in main arena
@@ -53,12 +56,12 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Free chunks
+### free chunks
 {{% section %}}
-> A bunch of other metadata
+> a bunch of other metadata
 
-* Size of the previous chunk
-* A pointer to the next / previous chunk
+* size of the previous chunk
+* a pointer to the next / previous chunk
 * basically just a look of *control* characters
 * etc
 
@@ -72,24 +75,24 @@ We expect a high standard of professionalism from you at all times while you are
 
 ## `free()`
 {{% section %}}
-> After a chunk is `free()`'d, information about it is stored in a 'bin'
+> after a chunk is `free()`'d, information about it is stored in a 'bin'
 
-* Fast bins
-* Non-fast
-    * Unsorted bins
-    * Small/Large
-* TCache
+* fast bins
+* non-fast
+    * unsorted bins
+    * small/Large
+* tcache
 
 ---
 
 ### Fast-bins
-* Used to store information about <u>small</u> chunks
-* Chunks are stored in size-specific bins
+* used to store information about <u>small</u> chunks
+* chunks are stored in size-specific bins
     * 16, 24, 32, ... 88 bytes (10 total)
 
-* A fast-bin is a singly-linked list
-    * New chunks are added to the start (LIFO)
-    * Chunks aren't combined with adjacent chunks
+* a fast-bin is a singly-linked list
+    * new chunks are added to the start (LIFO)
+    * chunks aren't combined with adjacent chunks
 
 ---
 
@@ -101,7 +104,7 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ### Other bins
-* Normal bins are divided into:
+* normal bins are divided into:
     * 62 small bins (chunks of *same* size)
     * 2 large bins (chunks of *similar* sizes)
 * chunk sizes may be changed
@@ -126,12 +129,12 @@ We expect a high standard of professionalism from you at all times while you are
 ### A quick note
 * *we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
 
-* Depending on your OS/LIBC version/~~the orientation of the sun~~, you might get errors, e.g. double `free()` detected blah blah.
+* depending on your OS/LIBC version/~~the orientation of the sun~~, you might get errors, e.g. double `free()` detected blah blah.
 
 ---
 
 ### Solution?
-* Just use docker
+* just use docker
     * `docker run -d --rm -h banana --name banana -v $(pwd):/ctf/work --cap-add=SYS_PTRACE plsiamlegit/6447-ubuntu:pwndocker`
     * `docker exec -it banana /bin/bash`
 
@@ -139,29 +142,39 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## Use after free
+## use after free
 {{% section %}}
 
-### How does `free()` work
-* After a chunk is `free()`'d
+### how does `free()` work
+* after a chunk is `free()`'d
     * what happens to pointers to it?
     * what happens to it's contents?
 
 ---
 
-### what happens to a pointer to it?
+### answers
+* Q: what happens to a pointer to it?
+> nothing, we can still use the pointer
 
-> Nothing, we can still use the pointer
+&nbsp;
 
----
-
-### what happens to it's contents?
+* Q: what happens to it's contents?
 > it gets replaced with that metadata
 
 ---
 
-### Exploiting this?
+### exploiting this?
+* modifying an existing chunk
+* forging chunks
 
+---
+
+### modifying an existing chunk
+TODO
+
+---
+
+### forging chunks
 if we modified the metadata (e.g. the next chunk ptr), then malloc(...) would return memory we tell it to.
 
 ```PHP
@@ -172,13 +185,17 @@ malloc(...)     // bin: ????
 // the second call to malloc returns 0x41414141
 ```
 
+---
+
+### demo
+
 {{% /section %}}
 
 ---
 
-## Double free
+## double free
 {{% section %}}
-* What happens if we `free()`'d a chunk twice?
+* what happens if we `free()`'d a chunk twice?
     * first time: it's added to the free list
     * second time: it's added to the free list, again?
 
@@ -190,27 +207,25 @@ malloc(...)     // bin: chunk -> NULL
 malloc(...)     // bin: NULL
 ```
 
-Both calls to `malloc()` return the same chunk?
+both calls to `malloc()` return the same chunk?
 
 ---
 
-There's basic protections against double `free()`s, and it'll `SIGABORT` when detected
+there's basic protections against double `free()`s, and it'll `SIGABORT` when detected
 <img src="../img/week08/double_free.png" />
 
-> But what if you just...
+> but what if you just...
 ```PHP
 free(chunk_1)
 free(chunk_2)
 free(chunk_1)
 ```
 
-{{% /section %}}
-
 ---
 
-## Demo
-* *Double free*
-* *Use-after free*
+### demo
+
+{{% /section %}}
 
 ---
 
@@ -223,8 +238,8 @@ free(chunk_1)
 
 ---
 
-## Tutorial
+## tutorial
 
 ---
 
-## Walkthrough
+## walkthrough

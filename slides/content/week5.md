@@ -1,5 +1,5 @@
 ---
-title: "05: programming errors/fuzzing"
+title: "5: programming errors/fuzzing"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -10,7 +10,7 @@ outputs: ["Reveal"]
 
 {{< slide class="center" >}}
 # fuzzing & programming errors
-### 6447 week05
+### 6447 week5
 
 ---
 

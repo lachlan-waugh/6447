@@ -1,5 +1,5 @@
 ---
-title: "01: intro"
+title: "1: intro"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -9,8 +9,8 @@ outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
-# Tooling Setup
-### 6447 week01
+# tooling setup
+### 6447 week1
 
 ---
 

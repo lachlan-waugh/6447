@@ -1,5 +1,5 @@
 ---
-title: "03: shellcode"
+title: "3: shellcode"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -10,7 +10,7 @@ outputs: ["Reveal"]
 
 {{< slide class="center" >}}
 # shellcode
-### 6447 week03 
+### 6447 week3 
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "02: buffer overflows"
+title: "2: buffer overflows"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -9,8 +9,8 @@ outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
-# Buffer Overflowssssssssssssssssssssssssssssssssssssssssssss\xef\xeb\ad\ed
-### 6447 week02
+# buffer overflowssssssssssssssssssssssssssssssssssssssssssss\xef\xeb\ad\ed
+### 6447 week2
 
 ---
 

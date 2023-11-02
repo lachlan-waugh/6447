@@ -1,5 +1,5 @@
 ---
-title: "Week04"
+title: "4: format strings"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -9,8 +9,8 @@ outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
-# Format Strings
-### 6447 week04
+# format strings
+### 6447 week4
 
 ---
 
