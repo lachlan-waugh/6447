@@ -1,5 +1,5 @@
 ---
-title: "Week09"
+title: "9: more rop"
 layout: "bundle"
 outputs: ["Reveal"]
 ---
@@ -9,8 +9,8 @@ outputs: ["Reveal"]
 ---
 
 {{< slide class="center" >}}
-# Week09
-### T1[68]A COMP6447 
+# rop techniques & revision
+### 6447 week9
 
 ---
 
@@ -27,7 +27,7 @@ We expect a high standard of professionalism from you at all times while you are
 ## Stack pivots
 {{% section %}}
 
-### The problem
+### the problem
 * we have an overflowable buffer
 * it's too small for a full ROP payload
 
@@ -35,7 +35,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### The solution
+### the solution
 * We could:
     * jump back earlier in the current buffer
     * jump into a bigger buffer (better/harder)
@@ -116,7 +116,7 @@ vuln(){
 
 ---
 
-### Stack-pivots (extreme!!)
+### stack-pivots (extreme!!)
 {{% section %}}
 
 * what if we only had a single byte overflow
@@ -192,6 +192,32 @@ Leave:
 [ 0xfffffff0 ] <- partial overwrite
 [     EIP    ] 
 ```
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## srop
+sig-return oriented programming
+
+---
+
+TODO
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## www
+write-what-where gadgets
+
+---
+
+TODO
 
 {{% /section %}}
 
