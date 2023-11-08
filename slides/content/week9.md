@@ -4,7 +4,7 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at [46]:05
+## We'll get started at 1[68]:05
 
 ---
 
@@ -14,9 +14,9 @@ outputs: ["Reveal"]
 
 ---
 
-## Good faith policy
+## good faith policy
 
-We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
+we expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
 
 *TLDR: Don't be a ~~dick~~ jerk*
 
@@ -24,7 +24,44 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## Stack pivots
+{{% section %}}
+
+## doing more with rop
+
+---
+
+### calling functions
+it's not just syscalls for `execve("/bin/sh")`
+
+* generally you'll have access to many more functions
+
+---
+
+### www
+write-what-where gadgets
+
+```php
+mov <[register]>, <register>
+```
+
+---
+
+### using the stack
+we can still use the stack
+
+* that's where our payload (padding) is
+* doesn't have to be mov, what about add, mul, ???
+
+```php
+    mov eax, esp
+    sub eax, 10
+```
+
+{{% /section %}}
+
+---
+
+## stack pivots
 {{% section %}}
 
 ### the problem
@@ -46,7 +83,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-### Simple example
+### stack pivot example
 {{% section %}}
 
 ```C
@@ -135,11 +172,32 @@ int vuln() {
 
 ---
 
-* how realistic is this?
-
+## how realistic is this?
+why is this vulnerable?
 
 ```C
+int vuln(char *s) {
+    char buffer[100];
+    memset(buffer, 0, sizeof(buffer));
+    strncat(buffer, s, sizeof(buffer));
+    return 0;
+}
+```
 
+---
+
+## how realistic is this?
+these should be `sizeof(buffer) - 1`
+
+```C
+int vuln(char *s) {
+    char buffer[100];
+    //                vvvvvvvvvvvvvv
+    memset(buffer, 0, sizeof(buffer));
+    strncat(buffer, s, sizeof(buffer));
+    //                 ^^^^^^^^^^^^^^
+    return 0;
+}
 ```
 
 {{% /section %}}
@@ -210,30 +268,7 @@ TODO
 
 ---
 
-{{% section %}}
-
-## www
-write-what-where gadgets
-
----
-
-TODO
-
-{{% /section %}}
-
----
-
-## Demos
-> there are none l0l
-
----
-
-### One gadgets
-> TODO
-
----
-
-## Walkthroughs
+## 
 > are there any challenges you want me to demo?
 
 ---
