@@ -4,7 +4,7 @@ languageCode = "en-au"
 relativeURLs = true
 theme = "reveal-hugo"
 
-[markup.goldmark.rendered]
+[markup.goldmark.renderer]
 unsafe = true
 
 [outputFormats.Reveal]
