@@ -11,8 +11,3 @@ unsafe = true
 baseName = "index"
 mediaType = "text/html"
 isHTML = true
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
