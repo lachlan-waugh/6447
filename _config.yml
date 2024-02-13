@@ -1,0 +1,10 @@
+title: 6447
+description:
+theme: jekyll-theme-hacker
+show_downloads: false
+github:
+  is_project_page: false
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
