@@ -1,4 +1,4 @@
-name: github pages
+name: build and deploy to github pages
 
 on:
   push:
@@ -9,25 +9,26 @@ on:
 jobs:
   deploy:
     if: github.repository != 'lachlan-waugh/tut-template'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Setup Hugo
+      - name: get hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
           extended: true
 
-      - name: Build
-        run: cd slides && hugo --gc --minify --cleanDestinationDir -d public
+      - name: build
+        working-directory: slides
+        run: hugo --gc --minify --cleanDestinationDir -d public
 
-      - name: Deploy
+      - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          publish_branch: pages
           publish_dir: ./slides/public
           enable_jekyll: true
