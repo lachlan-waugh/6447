@@ -24,42 +24,42 @@ mov rbx, rsp
 /* call execve() */
 mov rax, 0xb /* Syscall Number 11 */
 syscall    /* Trigger syscall */
-</code></pre></section><section><h3 id=how-do-we-replicate-this>How do we replicate this</h3><p><code>execve('/bin/sh', NULL, NULL)</code></p><pre tabindex=0><code>RAX = 0xB # (11)
+</code></pre></section><section><h3 id=how-do-we-replicate-this>How do we replicate this</h3><p><code>execve('/bin/sh', NULL, NULL)</code></p><pre tabindex=0><code>RAX = 0x3B # (59)
 RBX = address to /bin/sh
-ECX = NULL
-EDX = NULL
-INT 0x80 Syscall
-</code></pre></section><section><h3 id=now-thats-its-rop>Now that&rsquo;s it&rsquo;s ROP</h3><p>Instead of raw instructions, we&rsquo;ll use gadgets</p><pre tabindex=0><code>[GADGET_1] # EAX := 0xB # (11)
-[GADGET_2] # EBX := address to /bin/sh
-[GADGET_3] # ECX := NULL
-[GADGET_4] # EDX := NULL
-[GADGET_5] # INT 0x80 Syscall
-</code></pre></section><section><h3 id=how-do-we-find-gadgets>How do we find gadgets?</h3><ul><li><a href=https://github.com/sashs/Ropper>Ropper</a></li><li><a href=https://github.com/JonathanSalwan/ROPgadget>ROPgadget</a></li><li><a href=https://github.com/Ben-Lichtman/ropr>ropr</a></li></ul></section><section><h3 id=finding-gadgets>Finding gadgets</h3><pre tabindex=0><code>&gt; ROPgadget --binary ropme | grep &#39;pop ebx&#39;
-0x0804832d : pop ebx ; ret
+RCX = NULL
+RDX = NULL
+syscall
+</code></pre></section><section><h3 id=now-thats-its-rop>Now that&rsquo;s it&rsquo;s ROP</h3><p>Instead of raw instructions, we&rsquo;ll use gadgets</p><pre tabindex=0><code>[GADGET_1] # RAX := 0x3B # (59)
+[GADGET_2] # RBX := address to /bin/sh
+[GADGET_3] # RCX := NULL
+[GADGET_4] # RDX := NULL
+[GADGET_5] # Syscall
+</code></pre></section><section><h3 id=how-do-we-find-gadgets>How do we find gadgets?</h3><ul><li><a href=https://github.com/sashs/Ropper>Ropper</a></li><li><a href=https://github.com/JonathanSalwan/ROPgadget>ROPgadget</a></li><li><a href=https://github.com/Ben-Lichtman/ropr>ropr</a></li></ul></section><section><h3 id=finding-gadgets>Finding gadgets</h3><pre tabindex=0><code>&gt; ROPgadget --binary ropme --search &#39;pop rbx&#39;
+0x0804832d : pop rbx ; ret
 
-&gt; ROPgadget --binary ropme | grep &#39;xor ecx&#39;
-0x080484b5 : xor ecx, ecx ; ret
+&gt; ROPgadget --binary ropme --search&#39;xor rcx&#39;
+0x080484b5 : xor rcx, rcx ; ret
 
-&gt; ROPgadget --binary ropme | grep &#39;xor edx&#39;
-0x080484b8 : xor edx, edx ; ret
+&gt; ROPgadget --binary ropme --search &#39;xor rdx&#39;
+0x080484b8 : xor rdx, rdx ; ret
 
-&gt; ROPgadget --binary ropme | grep &#39;int 0x80&#39;
-0x080484bb : mov eax, 0xb ; int 0x80
-</code></pre></section><section><h3 id=using-strings-and-values>Using strings and values</h3><p><code>pop ebx; ret</code> grabs the next address on the stack, and stores it in <code>ebx</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=nohighlight data-noescape><span style=display:flex><span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0x08041234</span>) <span style=color:#75715e>// pop ebx; ret;
+&gt; ROPgadget --binary ropme --search &#39;syscall&#39;
+0x080484bb : mov rax, 0x3B ; int 0x80
+</code></pre></section><section><h3 id=using-strings-and-values>Using strings and values</h3><p><code>pop rbx; ret</code> grabs the next address on the stack, and stores it in <code>rbx</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=nohighlight data-noescape><span style=display:flex><span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0x08041234</span>) <span style=color:#75715e>// pop rbx; ret;
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0x0804abcd</span>) <span style=color:#75715e>// address of &#34;/bin/sh&#34;
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// now ebx stores a pointer to &#34;/bin/sh&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// now rbx stores a pointer to &#34;/bin/sh&#34;
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0x08041234</span>) <span style=color:#75715e>// pop ebx; ret;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0x08041234</span>) <span style=color:#75715e>// pop rbx; ret;
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>p32</span>(<span style=color:#ae81ff>0xA</span>)        <span style=color:#75715e>// 10
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// now ebx == 10
-</span></span></span></code></pre></div></section><section><h3 id=getting-the-stack-address>getting the stack address</h3><p>we could grab the stack pointer, and store it in <code>ebx</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=nohighlight data-noescape><span style=display:flex><span>push esp, pop ebx; ret;
-</span></span><span style=display:flex><span><span style=color:#75715e>// now ebx will store &amp;esp
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// now rbx == 10
+</span></span></span></code></pre></div></section><section><h3 id=getting-the-stack-address>getting the stack address</h3><p>we could grab the stack pointer, and store it in <code>rbx</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=nohighlight data-noescape><span style=display:flex><span>push esp, pop rbx; ret;
+</span></span><span style=display:flex><span><span style=color:#75715e>// now rbx will store &amp;esp
 </span></span></span></code></pre></div><blockquote><p>generally both instructions will need to be in the same gadget</p></blockquote></section><section><h3 id=what-should-a-payload-look-like>What should a payload look like?</h3><pre tabindex=0><code>[  PADDING  ] &lt;== our first gadget should overwrite ret
-[  EAX=0xB  ]
-[  POP EBX  ]
+[  RAX=0x3B ]
+[  POP RBX  ]
 [  &amp;BIN SH  ]
-[  XOR ECX  ]
-[  XOR EDX  ]
+[  XOR RCX  ]
+[  XOR RDX  ]
 [  SYSCALL  ]
 </code></pre></section><section><h3 id=how-else-could-we-get-a-shell>How else could we get a shell?</h3><ul><li>we can also call functions!</li><li>what if the program already calls system?</li></ul><pre tabindex=0><code>CALL SYSTEM
 PUSH &amp;(&#39;/bin/sh&#39;)
@@ -74,5 +74,5 @@ PUSH &amp;(&#39;/bin/sh&#39;)
 </span></span><span style=display:flex><span>next(elf<span style=color:#f92672>.</span>search(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;/bin/sh&#39;</span>))
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># you can also find gadgets</span>
-</span></span><span style=display:flex><span>next(elf<span style=color:#f92672>.</span>search(asm(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;mov eax, 0xb; ret&#39;</span>, os<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;linux&#39;</span>, arch<span style=color:#f92672>=</span>e<span style=color:#f92672>.</span>arch)))
+</span></span><span style=display:flex><span>next(elf<span style=color:#f92672>.</span>search(asm(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;mov rax, 0xb; ret&#39;</span>, os<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;linux&#39;</span>, arch<span style=color:#f92672>=</span>e<span style=color:#f92672>.</span>arch)))
 </span></span></code></pre></div></section><section><h2 id=demo>Demo</h2><blockquote><p>ret2libc</p></blockquote></section></section><section><h2 id=tutorial>Tutorial</h2><blockquote><p>3 chals this week, try to solve them all</p></blockquote></section><section><h2 id=walkthrough>Walkthrough</h2><blockquote><p>image-viewer?</p></blockquote></section></div></div><script type=text/javascript src=../reveal-hugo/object-assign.js></script><a href=../reveal-js/css/print/ id=print-location style=display:none></a><script type=text/javascript>var printLocationElement=document.getElementById("print-location"),link=document.createElement("link");link.rel="stylesheet",link.type="text/css",link.href=printLocationElement.href+(window.location.search.match(/print-pdf/gi)?"pdf.css":"paper.css"),document.getElementsByTagName("head")[0].appendChild(link)</script><script type=application/json id=reveal-hugo-site-params>null</script><script type=application/json id=reveal-hugo-page-params>null</script><script src=../reveal-js/js/reveal.js></script><script type=text/javascript>function camelize(e){return e&&Object.keys(e).forEach(function(t){newK=t.replace(/(_\w)/g,function(e){return e[1].toUpperCase()}),newK!=t&&(e[newK]=e[t],delete e[t])}),e}var revealHugoDefaults={center:!0,controls:!0,history:!0,progress:!0,transition:"slide"},revealHugoSiteParams=JSON.parse(document.getElementById("reveal-hugo-site-params").innerHTML),revealHugoPageParams=JSON.parse(document.getElementById("reveal-hugo-page-params").innerHTML),options=Object.assign({},camelize(revealHugoDefaults),camelize(revealHugoSiteParams),camelize(revealHugoPageParams));Reveal.initialize(options)</script><script type=text/javascript src=../reveal-js/plugin/markdown/marked.js></script><script type=text/javascript src=../reveal-js/plugin/markdown/markdown.js></script><script type=text/javascript src=../reveal-js/plugin/highlight/highlight.js></script><script type=text/javascript src=../reveal-js/plugin/zoom-js/zoom.js></script><script type=text/javascript src=../reveal-js/plugin/notes/notes.js></script></body></html>

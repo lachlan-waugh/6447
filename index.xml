@@ -116,7 +116,7 @@
 
 
 &lt;section data-shortcode-section>
-&lt;p>&lt;img src="../assets/img/week01/icebreaker.jpg" alt="">&lt;/p></description></item><item><title>2: buffer overflows</title><link>/week2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week2/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;p>&lt;img src="../assets/img/week01/icebreaker.jpg" alt="">&lt;/p></description></item><item><title>2: buffer overflows</title><link>/week2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week2/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -125,34 +125,24 @@
 &lt;h1 id="buffer-overflowssssssssssssssssssssssssssssssssssssssssssssxefxebaded">buffer overflowssssssssssssssssssssssssssssssssssssssssssss\xef\xeb\ad\ed&lt;/h1>
 &lt;h3 id="6447-week2">6447 week2&lt;/h3>
 &lt;hr>
-&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
-&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
-&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
-&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
-&lt;hr>
-&lt;h2 id="lecture-content">Lecture content&lt;/h2>
-&lt;ul>
-&lt;li>what is stack&lt;/li>
-&lt;li>buffer overflows&lt;/li>
-&lt;li>memory protections&lt;/li>
-&lt;/ul>
-&lt;hr>
 
 
 &lt;section data-shortcode-section>
-&lt;h2 id="register-layout">register layout&lt;/h2>
-&lt;ul>
-&lt;li>AX is the bottom half of EAX (AH/AL), not the top half&lt;/li>
-&lt;/ul>
-&lt;hr>
 &lt;h2 id="stack-frames">stack frames&lt;/h2>
 &lt;ul>
 &lt;li>what register stores the stack, and frame pointer?&lt;/li>
 &lt;li>why are the parameters stored &lt;em>below&lt;/em> frame pointer?&lt;/li>
 &lt;/ul>
 &lt;hr>
-&lt;h2 id="the-stack-grows-sideways">the stack grows sideways&lt;/h2>
-&lt;p>jk it grows down&lt;/p></description></item><item><title>3: shellcode</title><link>/week3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week3/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;h2 id="the-stack-grows-down">the stack grows down&lt;/h2>
+&lt;ul>
+&lt;li>the stack grows from high address to low addresses&lt;/li>
+&lt;li>so the top of the stack, is lower down in memory&lt;/li>
+&lt;li>this doesn&amp;rsquo;t really change how you exploit, you also just write up the stack&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="stack-frames-1">stack frames&lt;/h2>
+&lt;p>basic example&lt;/p></description></item><item><title>3: shellcode</title><link>/week3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week3/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
