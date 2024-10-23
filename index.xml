@@ -1,37 +1,478 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>COMP6447 Resources</title><link>/</link><description>Recent content on COMP6447 Resources</description><generator>Hugo -- gohugo.io</generator><language>en-au</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>02: buffer overflows</title><link>/lecture2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture2/</guid><description>we&amp;rsquo;ll get started at [46]:05 buffer overflows 6447 lecture02 ___________________________. |[]|---------------------|[]|| |;;| ----------------- |;;|| |;;| | COMP6447 | |;;|| |;;| ----------------- |;;|| |;;| AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA |;;|_____________________|;;|| |;;;;;;;;;;;;;;;;;;;;;;;;;;;|| |;;;;;;_______________ ;;;;;|| |;;;;;| ___ |;;;;;|| |;;;;;| |;;;| |;;;;;|| |;;;;;| |___| |;;;;;|| \_____|_______________|_____|| ~~~~~^^^^^^^^^^^^^^^^^~~~~~~ reverse engineering how does assembly work compilers decompiling registers x86 registers tell me more even more&amp;hellip; what is a stack ebp &amp;amp; esp this might help this might actually help function (pro|epi)logue</description></item><item><title>1: intro</title><link>/week1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week1/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 tooling setup 6447 week1 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-&amp;gt; whoami Lachlan how to contact me lachlan.waugh@student.unsw.edu.au @melon on the SecEdu Slack @melon on the SecSoc Discord places for course discussion probably the discord mostly used to be secedu slack but it is :zombie: I will be more responsive on discord than email where to access resources waugh.</description></item><item><title>2: buffer overflows</title><link>/week2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week2/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 buffer overflowssssssssssssssssssssssssssssssssssssssssssss\xef\xeb\ad\ed 6447 week2 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-Lecture content what is stack buffer overflows memory protections register layout AX is the bottom half of EAX (AH/AL), not the top half stack frames what register stores the stack, and frame pointer?</description></item><item><title>3: shellcode</title><link>/week3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week3/</guid><description>We&amp;rsquo;ll get started at 18:05 shellcode 6447 week3 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-todo reverse engineering shellcode memory protections (again) harder re instructions can give context to the variables
-harder re #2 what&amp;rsquo;s different between these instructions?</description></item><item><title>4: format strings</title><link>/week4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week4/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 format strings 6447 week4 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-Lecture content format strings where to write memory protections printf (and it&amp;rsquo;s siblings) [v,va,s,sn,f]printf [v,va,s,sn,f]scanf setproctitle, syslog, and others! anatomy of a format string %&amp;lt;flags&amp;gt;&amp;lt;width&amp;gt;&amp;lt;precision&amp;gt;&amp;lt;modifier&amp;gt;&amp;lt;type&amp;gt;</description></item><item><title>5: programming errors/fuzzing</title><link>/week5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week5/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 fuzzing &amp;amp; programming errors 6447 week5 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-Fuzzer (Group Project) [Major Project] on WebCMS okay ramble about fuzzers
-due dates midpoint: end of week07 final: end of week10 Groups register here (linked on WebCMS) each group, just email me whos in your group cross-tutorial groups are fine wargame marks so far avg 3/3 war01 2.</description></item><item><title>7: rop</title><link>/week7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week7/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 return oriented programming 6447 week7 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-House cleaning Fuzzer Midpoint check-in is due this Sunday 6pm Make sure you&amp;rsquo;ve got a working prototype Midterm How&amp;rsquo;d you find it A summary so far weeks 2/3 buffer overflow → win() shellcode (building a win()) now: rop/ret2 (building a win() again (not in the stack)) buffer overflows Abusing functions which can read more data than they have allocated memory for (gets, strcpy)</description></item><item><title>8: heap</title><link>/week8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week8/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 heap exploitation 6447 week8 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-chunks malloc() returns chunks (blocks of memory)
-chunks can either be in-use or free each has different metadata associated with it in-use chunks what is the &amp;ldquo;metadata&amp;rdquo; size of the chunk last 3 bits: 1: chunk is in main arena 2: chunk is mmap&amp;rsquo;d (not in the heap) 3: previous chunk in use mixing metadata (control) &amp;amp; user data?</description></item><item><title>9: more rop</title><link>/week9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week9/</guid><description>We&amp;rsquo;ll get started at 1[68]:05 rop techniques &amp;amp; revision 6447 week9 good faith policy we expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-doing more with rop calling functions it&amp;rsquo;s not just syscalls for execve(&amp;quot;/bin/sh&amp;quot;)
-won&amp;rsquo;t always be calling assembly instructions generally you&amp;rsquo;ll have access to many more functions probably won&amp;rsquo;t get exactly what you want malloc, printf, mmap can all leverage other exploits</description></item><item><title>week01: introduction</title><link>/lecture1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture1/</guid><description>We&amp;rsquo;ll get started at 18:05 course intro + background COMP6447 Week01 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-course introduction contact hours lectures - 2 hours tutorials - 2 hours maybe less than you&amp;rsquo;re used to</description></item><item><title>Week10</title><link>/week10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week10/</guid><description>We&amp;rsquo;ll get started at [46]:05 Week10 T1[68]A COMP6447 Good faith policy We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-TLDR: Don&amp;rsquo;t be a dick jerk
-sec.edu.au/good-faith-policy
-My Experience How&amp;rsquo;d you find the course
-What&amp;rsquo;d you like What&amp;rsquo;d you dislike What can be improved https://myexperience.unsw.edu.au
-iOS Hacking demo anyone have an iPhone I can hack?</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>COMP6447 Resources</title><link>/</link><description>Recent content on COMP6447 Resources</description><generator>Hugo</generator><language>en-au</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>02: buffer overflows</title><link>/lecture2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture2/</guid><description>&lt;h2 id="well-get-started-at-4605">we&amp;rsquo;ll get started at [46]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="buffer-overflows">buffer overflows&lt;/h1>
+&lt;h3 id="6447-lecture02">6447 lecture02&lt;/h3>
+&lt;hr>
+&lt;pre tabindex="0">&lt;code> ___________________________.
+ |[]|---------------------|[]||
+ |;;| ----------------- |;;||
+ |;;| | COMP6447 | |;;||
+ |;;| ----------------- |;;||
+ |;;| AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ |;;|_____________________|;;||
+ |;;;;;;;;;;;;;;;;;;;;;;;;;;;||
+ |;;;;;;_______________ ;;;;;||
+ |;;;;;| ___ |;;;;;||
+ |;;;;;| |;;;| |;;;;;||
+ |;;;;;| |___| |;;;;;||
+ \_____|_______________|_____||
+ ~~~~~^^^^^^^^^^^^^^^^^~~~~~~
+&lt;/code>&lt;/pre>&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="reverse-engineering">reverse engineering&lt;/h2>
+
+&lt;/section>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="how-does-assembly-work">how does assembly work&lt;/h2>
+&lt;hr>
+&lt;h3 id="compilers">compilers&lt;/h3>
+&lt;hr>
+&lt;h3 id="decompiling">decompiling&lt;/h3>
+
+&lt;/section>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h3 id="registers">registers&lt;/h3>
+&lt;hr>
+&lt;h3 id="x86-registers">x86 registers&lt;/h3>
+&lt;hr>
+&lt;h3 id="tell-me-more">tell me more&lt;/h3>
+&lt;hr>
+&lt;h3 id="even-more">even more&amp;hellip;&lt;/h3>
+&lt;hr>
+&lt;h3 id="what-is-a-stack">what is a stack&lt;/h3>
+&lt;hr>
+&lt;h3 id="ebp--esp">ebp &amp;amp; esp&lt;/h3>
+&lt;hr>
+&lt;h3 id="this-might-help">this might help&lt;/h3>
+&lt;hr>
+&lt;h3 id="this-might-actually-help">this might actually help&lt;/h3>
+&lt;hr>
+&lt;h3 id="function-proepilogue">function (pro|epi)logue&lt;/h3>
+
+&lt;/section></description></item><item><title>1: intro</title><link>/week1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week1/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="tooling-setup">tooling setup&lt;/h1>
+&lt;h3 id="6447-week1">6447 week1&lt;/h3>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>&lt;img src="../assets/img/week01/sus.png" alt="">&lt;/p>
+
+&lt;/section>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="-whoami">&amp;gt; whoami&lt;/h2>
+&lt;ul>
+&lt;li>Lachlan&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="how-to-contact-me">how to contact me&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="mailto:lachlan.waugh@student.unsw.edu.au">lachlan.waugh@student.unsw.edu.au&lt;/a>&lt;/li>
+&lt;li>&lt;a href="">@melon&lt;/a> on the SecEdu Slack&lt;/li>
+&lt;li>&lt;a href="">@melon&lt;/a> on the SecSoc Discord&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="places-for-course-discussion">places for course discussion&lt;/h2>
+&lt;ul>
+&lt;li>probably the discord mostly&lt;/li>
+&lt;li>used to be secedu slack but it is :zombie:&lt;/li>
+&lt;li>I will be more responsive on discord than email&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="where-to-access-resources">where to access resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://waugh.zip/6447">waugh.zip/6447&lt;/a>&lt;/li>
+&lt;li>tutorials may be recorded, idk yet&lt;/li>
+&lt;/ul>
+
+&lt;/section>
+&lt;hr>
+&lt;h2 id="-whoareu">&amp;gt; whoareu&lt;/h2>
+
+
+&lt;section data-shortcode-section>
+&lt;p>&lt;img src="../assets/img/week01/icebreaker.jpg" alt="">&lt;/p></description></item><item><title>2: buffer overflows</title><link>/week2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week2/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="buffer-overflowssssssssssssssssssssssssssssssssssssssssssssxefxebaded">buffer overflowssssssssssssssssssssssssssssssssssssssssssss\xef\xeb\ad\ed&lt;/h1>
+&lt;h3 id="6447-week2">6447 week2&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="lecture-content">Lecture content&lt;/h2>
+&lt;ul>
+&lt;li>what is stack&lt;/li>
+&lt;li>buffer overflows&lt;/li>
+&lt;li>memory protections&lt;/li>
+&lt;/ul>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="register-layout">register layout&lt;/h2>
+&lt;ul>
+&lt;li>AX is the bottom half of EAX (AH/AL), not the top half&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="stack-frames">stack frames&lt;/h2>
+&lt;ul>
+&lt;li>what register stores the stack, and frame pointer?&lt;/li>
+&lt;li>why are the parameters stored &lt;em>below&lt;/em> frame pointer?&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="the-stack-grows-sideways">the stack grows sideways&lt;/h2>
+&lt;p>jk it grows down&lt;/p></description></item><item><title>3: shellcode</title><link>/week3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week3/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="shellcode">shellcode&lt;/h1>
+&lt;h3 id="6447-week3">6447 week3&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="todo">todo&lt;/h2>
+&lt;ul>
+&lt;li>reverse engineering&lt;/li>
+&lt;li>shellcode&lt;/li>
+&lt;li>memory protections (again)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="harder-re">harder re&lt;/h3>
+&lt;p>instructions can give context to the variables&lt;/p>
+&lt;p>&lt;img src="./assets/img/week03/operation_implications.png" alt="">&lt;/p></description></item><item><title>4: format strings</title><link>/week4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week4/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="format-strings">format strings&lt;/h1>
+&lt;h3 id="6447-week4">6447 week4&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="lecture-content">Lecture content&lt;/h2>
+&lt;ul>
+&lt;li>format strings&lt;/li>
+&lt;li>where to write&lt;/li>
+&lt;li>memory protections&lt;/li>
+&lt;/ul>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="printf-and-its-siblings">printf (and it&amp;rsquo;s siblings)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>[v,va,s,sn,f]printf&lt;/code>&lt;/li>
+&lt;li>&lt;code>[v,va,s,sn,f]scanf&lt;/code>&lt;/li>
+&lt;li>&lt;code>setproctitle&lt;/code>, &lt;code>syslog&lt;/code>, and others!&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="anatomy-of-a-format-string">anatomy of a format string&lt;/h2>
+&lt;p>&lt;code>%&amp;lt;flags&amp;gt;&amp;lt;width&amp;gt;&amp;lt;precision&amp;gt;&amp;lt;modifier&amp;gt;&amp;lt;type&amp;gt;&lt;/code>&lt;/p></description></item><item><title>5: programming errors/fuzzing</title><link>/week5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week5/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="fuzzing--programming-errors">fuzzing &amp;amp; programming errors&lt;/h1>
+&lt;h3 id="6447-week5">6447 week5&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="fuzzer-group-project">Fuzzer (Group Project)&lt;/h2>
+&lt;ul>
+&lt;li>[&lt;a href="https://webcms3.cse.unsw.edu.au/COMP6447/23T3/resources/92851">Major Project&lt;/a>] on WebCMS&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="okay">okay&lt;/h3>
+&lt;blockquote>
+&lt;p>ramble about fuzzers&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h3 id="due-dates">due dates&lt;/h3>
+&lt;ul>
+&lt;li>&lt;em>midpoint&lt;/em>: end of week07&lt;/li>
+&lt;li>&lt;em>final&lt;/em>: end of week10&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="groups">Groups&lt;/h3>
+&lt;ul>
+&lt;li>register &lt;a href="https://forms.gle/7As9vpV47JB1KSCU8">here&lt;/a> (linked on WebCMS)&lt;/li>
+&lt;li>each group, just email me whos in your group&lt;/li>
+&lt;li>cross-tutorial groups are fine&lt;/li>
+&lt;/ul>
+
+&lt;/section>
+&lt;hr>
+&lt;h2 id="wargame-marks-so-far">wargame marks so far&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;code>avg&lt;/code>&lt;/th>
+ &lt;th>&lt;code>3/3&lt;/code>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>war01&lt;/code>&lt;/td>
+ &lt;td>&lt;code>2.50&lt;/code>&lt;/td>
+ &lt;td>&lt;code>18&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>war02&lt;/code>&lt;/td>
+ &lt;td>&lt;code>2.25&lt;/code>&lt;/td>
+ &lt;td>&lt;code>??&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>war03&lt;/code>&lt;/td>
+ &lt;td>&lt;code>1.80&lt;/code>&lt;/td>
+ &lt;td>&lt;code>??&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>total&lt;/code>&lt;/td>
+ &lt;td>&lt;code>6.55&lt;/code>&lt;/td>
+ &lt;td>&lt;code>??&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;h1 id="source-code-auditing">source Code Auditing&lt;/h1>
+&lt;hr>
+&lt;h3 id="what-do-these-code-blocks-do">what do these code blocks do?&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-C" data-lang="C">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> flags &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (flags &lt;span style="color:#f92672">&amp;amp;&lt;/span> FLAG){
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;TRUE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;FALSE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+
+&lt;span class='fragment ' >&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-C" data-lang="C">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (flags &lt;span style="color:#f92672">&amp;amp;&lt;/span> FLAG &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>){
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;TRUE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;FALSE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/span>
+
+
+
+
+&lt;span class='fragment ' >&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-C" data-lang="C">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (flags &lt;span style="color:#f92672">&amp;amp;&lt;/span> (FLAG &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)){
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;TRUE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;FALSE&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/span>
+
+
+&lt;hr>
+&lt;h3 id="is-this-code-the-same">is this code the same?&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-C" data-lang="C">&lt;span style="display:flex;">&lt;span>flags &lt;span style="color:#f92672">=&lt;/span> flags &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Flags: %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>,flags);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p> &lt;/p></description></item><item><title>7: rop</title><link>/week7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week7/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="return-oriented-programming">return oriented programming&lt;/h1>
+&lt;h3 id="6447-week7">6447 week7&lt;/h3>
+&lt;hr>
+&lt;h2 id="house-cleaning">House cleaning&lt;/h2>
+
+
+&lt;section data-shortcode-section>
+&lt;h3 id="fuzzer">Fuzzer&lt;/h3>
+&lt;ul>
+&lt;li>Midpoint check-in is due this Sunday 6pm&lt;/li>
+&lt;li>Make sure you&amp;rsquo;ve got a working prototype&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="midterm">Midterm&lt;/h3>
+&lt;ul>
+&lt;li>How&amp;rsquo;d you find it&lt;/li>
+&lt;/ul>
+
+&lt;/section>
+&lt;hr>
+&lt;h2 id="a-summary-so-far">A summary so far&lt;/h2>
+
+
+&lt;section data-shortcode-section>
+&lt;h3 id="weeks-23">weeks 2/3&lt;/h3>
+&lt;ul>
+&lt;li>buffer overflow → &lt;code>win()&lt;/code>&lt;/li>
+&lt;li>shellcode (building a &lt;code>win()&lt;/code>)&lt;/li>
+&lt;/ul>
+&lt;p> &lt;/p>
+&lt;h3 id="now">now:&lt;/h3>
+&lt;ul>
+&lt;li>rop/ret2 (building a &lt;code>win()&lt;/code> when NX is on)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="buffer-overflows">buffer overflows&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>Abusing functions which can read more data than they have allocated memory for (&lt;code>gets&lt;/code>, &lt;code>strcpy&lt;/code>)&lt;/p></description></item><item><title>8: heap</title><link>/week8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week8/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="heap-exploitation">heap exploitation&lt;/h1>
+&lt;h3 id="6447-week8">6447 week8&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h3 id="chunks">chunks&lt;/h3>
+&lt;p>&lt;code>malloc()&lt;/code> returns chunks (blocks of memory)&lt;/p>
+&lt;ul>
+&lt;li>chunks can either be &lt;strong>in-use&lt;/strong> or &lt;strong>free&lt;/strong>&lt;/li>
+&lt;li>each has different metadata associated with it&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="in-use-chunks">in-use chunks&lt;/h3>
+
+
+&lt;section data-shortcode-section>
+&lt;img src="../assets/img/week08/in-use.png" height="500px" />
+&lt;hr>
+&lt;h4 id="what-is-the-metadata">what is the &amp;ldquo;metadata&amp;rdquo;&lt;/h4>
+&lt;ul>
+&lt;li>size of the chunk&lt;/li>
+&lt;li>last 3 bits:
+&lt;ul>
+&lt;li>1: chunk is in main arena&lt;/li>
+&lt;li>2: chunk is mmap&amp;rsquo;d (not in the heap)&lt;/li>
+&lt;li>3: previous chunk in use&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>mixing metadata (control) &amp;amp; user data?&lt;/p></description></item><item><title>9: more rop</title><link>/week9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week9/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="rop-techniques--revision">rop techniques &amp;amp; revision&lt;/h1>
+&lt;h3 id="6447-week9">6447 week9&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">good faith policy&lt;/h2>
+&lt;p>we expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="doing-more-with-rop">doing more with rop&lt;/h2>
+&lt;hr>
+&lt;h3 id="calling-functions">calling functions&lt;/h3>
+&lt;p>it&amp;rsquo;s not just syscalls for &lt;code>execve(&amp;quot;/bin/sh&amp;quot;)&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>won&amp;rsquo;t always be calling assembly instructions&lt;/em>&lt;/li>
+&lt;li>generally you&amp;rsquo;ll have access to many more functions&lt;/li>
+&lt;li>probably won&amp;rsquo;t get exactly what you want&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>malloc, printf, mmap can all leverage other exploits&lt;/p></description></item><item><title>week01: introduction</title><link>/lecture1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture1/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="course-intro--background">course intro + background&lt;/h1>
+&lt;h2 id="comp6447-week01">COMP6447 Week01&lt;/h2>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h1 id="course-introduction">course introduction&lt;/h1>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="contact-hours">contact hours&lt;/h2>
+&lt;ul>
+&lt;li>lectures - 2 hours&lt;/li>
+&lt;li>tutorials - 2 hours&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>maybe less than you&amp;rsquo;re used to&lt;/p></description></item><item><title>Week10</title><link>/week10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week10/</guid><description>&lt;h2 id="well-get-started-at-4605">We&amp;rsquo;ll get started at [46]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="week10">Week10&lt;/h1>
+&lt;h3 id="t168a-comp6447">T1[68]A COMP6447&lt;/h3>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="my-experience">My Experience&lt;/h2>
+&lt;p>How&amp;rsquo;d you find the course&lt;/p>
+&lt;ul>
+&lt;li>What&amp;rsquo;d you like&lt;/li>
+&lt;li>What&amp;rsquo;d you dislike&lt;/li>
+&lt;li>What can be improved&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;a href="https://myexperience.unsw.edu.au">https://myexperience.unsw.edu.au&lt;/a>&lt;/p></description></item></channel></rss>
