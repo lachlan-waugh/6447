@@ -4,23 +4,13 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at 1[68]:05
+## We'll get started at 18:05
 
 ---
 
 {{< slide class="center" >}}
 # return oriented programming
 ### 6447 week7
-
----
-
-## Good faith policy
-
-We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-
-*TLDR: Don't be a ~~dick~~ jerk*
-
-[sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
 
 ---
 
@@ -50,7 +40,7 @@ We expect a high standard of professionalism from you at all times while you are
 &nbsp;
 
 ### now:
-* rop/ret2 (building a `win()` again (not in the stack))
+* rop/ret2 (building a `win()` when NX is on)
 
 ---
 
@@ -88,14 +78,14 @@ We expect a high standard of professionalism from you at all times while you are
 ---
 
 ### how does ret work?
-it grabs what esp is pointing to, and jumps there
+it grabs what rsp is pointing to, and jumps there
 
 ```
-pop ecx
-jmp ecx
+pop rcx
+jmp rcx
 ```
 
-> esp is integral to our ropchain
+> rsp is integral to our ropchain
 
 ---
 
@@ -104,13 +94,13 @@ ret is the last thing in a function call
 
 * it's called after:
     * local vars are cleaned up, and
-    * `ebp` is grabbed off the stack
-* so `esp` should is pointing at the return address
+    * `rbp` is grabbed off the stack
+* so `rsp` should is pointing at the return address
 
 ```php
     0x18  [   ARGS   ] <- parameters
-    0x14  [   EIP    ] <- +++esp now points here+++
-    0x10  [   EBP    ] <- cleaned up by leave
+    0x14  [   RIP    ] <- +++rsp now points here+++
+    0x10  [   RBP    ] <- cleaned up by leave
     0x0C  [ AAAAAAAA ] <- local vars are dealloc'd
 ```
 
@@ -121,8 +111,8 @@ it's going to execute each gadget, then grab the next one off the stack, and exe
 ```php
     0x18  [ GADGET_3 ] <- parameters
     0x18  [ GADGET_2 ] <- parameters
-    0x14  [ GADGET_1 ] <- +++esp now points here+++
-    0x10  [   EBP    ] <- cleaned up by leave
+    0x14  [ GADGET_1 ] <- +++rsp now points here+++
+    0x10  [   RBP    ] <- cleaned up by leave
     0x0C  [ AAAAAAAA ] <- local vars are dealloc'd
 ```
 
@@ -137,7 +127,7 @@ it's going to execute each gadget, then grab the next one off the stack, and exe
 ```
     0xAABBCCDD          0xAABBCCDD      0xAABBCCDD
       ^^^^^^^^              ^^                ^^^^
-    MOV EAX, 12         XOR EAX, EAX       INC EAX; CALL WIN
+    MOV RAX, 12         XOR RAX, RAX       INC RAX; CALL WIN
 ```
 
 > note, I made those ^^^ up entirely
@@ -147,18 +137,16 @@ it's going to execute each gadget, then grab the next one off the stack, and exe
 ### Old shellcode
 ```
 /* argv = envp = NULL */
-xor edx, edx
-xor ecx, ecx
+xor rcx, rdx
+xor rcx, rcx
 
 /* push '/bin/sh' onto stack */
-push 0x68
-push 0x732f2f2f
-push 0x6e69622f
-mov ebx, esp
+push 0x732f2f6e69622f
+mov rbx, rsp
 
 /* call execve() */
-mov eax, 0xb /* Syscall Number 11 */
-int 0x80     /* Trigger syscall */
+mov rax, 0xb /* Syscall Number 11 */
+syscall    /* Trigger syscall */
 ```
 
 ---
@@ -166,8 +154,8 @@ int 0x80     /* Trigger syscall */
 ### How do we replicate this
 `execve('/bin/sh', NULL, NULL)`
 ```
-EAX = 0xB # (11)
-EBX = address to /bin/sh
+RAX = 0xB # (11)
+RBX = address to /bin/sh
 ECX = NULL
 EDX = NULL
 INT 0x80 Syscall
