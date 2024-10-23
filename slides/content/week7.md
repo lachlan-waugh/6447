@@ -154,11 +154,11 @@ syscall    /* Trigger syscall */
 ### How do we replicate this
 `execve('/bin/sh', NULL, NULL)`
 ```
-RAX = 0xB # (11)
+RAX = 0x3B # (59)
 RBX = address to /bin/sh
-ECX = NULL
-EDX = NULL
-INT 0x80 Syscall
+RCX = NULL
+RDX = NULL
+syscall
 ```
 
 ---
@@ -166,11 +166,11 @@ INT 0x80 Syscall
 ### Now that's it's ROP
 Instead of raw instructions, we'll use gadgets
 ```
-[GADGET_1] # EAX := 0xB # (11)
-[GADGET_2] # EBX := address to /bin/sh
-[GADGET_3] # ECX := NULL
-[GADGET_4] # EDX := NULL
-[GADGET_5] # INT 0x80 Syscall
+[GADGET_1] # RAX := 0x3B # (59)
+[GADGET_2] # RBX := address to /bin/sh
+[GADGET_3] # RCX := NULL
+[GADGET_4] # RDX := NULL
+[GADGET_5] # Syscall
 ```
 
 ---
@@ -184,40 +184,40 @@ Instead of raw instructions, we'll use gadgets
 
 ### Finding gadgets
 ```
-> ROPgadget --binary ropme | grep 'pop ebx'
-0x0804832d : pop ebx ; ret
+> ROPgadget --binary ropme --search 'pop rbx'
+0x0804832d : pop rbx ; ret
 
-> ROPgadget --binary ropme | grep 'xor ecx'
-0x080484b5 : xor ecx, ecx ; ret
+> ROPgadget --binary ropme --search'xor rcx'
+0x080484b5 : xor rcx, rcx ; ret
 
-> ROPgadget --binary ropme | grep 'xor edx'
-0x080484b8 : xor edx, edx ; ret
+> ROPgadget --binary ropme --search 'xor rdx'
+0x080484b8 : xor rdx, rdx ; ret
 
-> ROPgadget --binary ropme | grep 'int 0x80'
-0x080484bb : mov eax, 0xb ; int 0x80
+> ROPgadget --binary ropme --search 'syscall'
+0x080484bb : mov rax, 0x3B ; int 0x80
 ```
 
 ---
 
 ### Using strings and values
-`pop ebx; ret` grabs the next address on the stack, and stores it in `ebx`
+`pop rbx; ret` grabs the next address on the stack, and stores it in `rbx`
 ```C
-p32(0x08041234) // pop ebx; ret;
+p32(0x08041234) // pop rbx; ret;
 p32(0x0804abcd) // address of "/bin/sh"
-// now ebx stores a pointer to "/bin/sh"
+// now rbx stores a pointer to "/bin/sh"
 
-p32(0x08041234) // pop ebx; ret;
+p32(0x08041234) // pop rbx; ret;
 p32(0xA)        // 10
-// now ebx == 10
+// now rbx == 10
 ```
 
 ---
 
 ### getting the stack address
-we could grab the stack pointer, and store it in `ebx`
+we could grab the stack pointer, and store it in `rbx`
 ```C
-push esp, pop ebx; ret;
-// now ebx will store &esp
+push esp, pop rbx; ret;
+// now rbx will store &esp
 ```
 
 > generally both instructions will need to be in the same gadget
@@ -227,11 +227,11 @@ push esp, pop ebx; ret;
 ### What should a payload look like?
 ```
 [  PADDING  ] <== our first gadget should overwrite ret
-[  EAX=0xB  ]
-[  POP EBX  ]
+[  RAX=0x3B ]
+[  POP RBX  ]
 [  &BIN SH  ]
-[  XOR ECX  ]
-[  XOR EDX  ]
+[  XOR RCX  ]
+[  XOR RDX  ]
 [  SYSCALL  ]
 ```
 
@@ -298,7 +298,7 @@ elf = ELF('binary_file')
 next(elf.search(b'/bin/sh'))
 
 # you can also find gadgets
-next(elf.search(asm(b'mov eax, 0xb; ret', os='linux', arch=e.arch)))
+next(elf.search(asm(b'mov rax, 0xb; ret', os='linux', arch=e.arch)))
 ```
 
 ---

@@ -4,7 +4,7 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at 1[68]:05
+## We'll get started at 18:05
 
 ---
 
@@ -14,30 +14,7 @@ outputs: ["Reveal"]
 
 ---
 
-## Good faith policy
-
-We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times
-
-*TLDR: Don't be a ~~dick~~ jerk*
-
-[sec.edu.au/good-faith-policy](https://sec.edu.au/good-faith-policy)
-
----
-
-
-## Lecture content
-* what is stack
-* buffer overflows
-* memory protections
-
----
-
 {{% section %}}
-
-## register layout
-* AX is the bottom half of EAX (AH/AL), not the top half
-
----
 
 ## stack frames
 * what register stores the stack, and frame pointer?
@@ -45,9 +22,7 @@ We expect a high standard of professionalism from you at all times while you are
 
 ---
 
-## the stack grows sideways
-jk it grows down
-
+## the stack grows down
 * the stack grows from high address to low addresses
 * so the top of the stack, is lower down in memory
 * this doesn't really change how you exploit, you also just write up the stack
@@ -58,22 +33,22 @@ jk it grows down
 basic example
 
 ```
-    0x18  [   ARGS   ] <- parameters
-    0x14  [   EIP    ] <- stored return pointer
-    0x10  [   EBP    ] <- stored frame pointer
-    0x0C  [ AAAAAAAA ] <- local vars
-    0x08  [ 00000001 ] <- an int?
-    0x04  [ DEADBEEF ] <- a pointer
-    0x00  [ 59454554 ] <- 4 characters
+    0x30  [       ARGS       ] <- parameters
+    0x28  [       RIP        ] <- stored return pointer
+    0x20  [       RBP        ] <- stored frame pointer
+    0x18  [ AAAAAAAAAAAAAAAA ] <- local vars
+    0x10  [ 0000000000000001 ] <- an int?
+    0x08  [ DEADBEEFCAFEBABE ] <- a pointer
+    0x00  [ 5945455459454554 ] <- 4 characters
 ```
 
 ---
 
 ## where are vars
-referenced in relation to `ebp` e.g. `ebp-0x4`
+referenced in relation to `rbp` e.g. `rbp-0x4`
 
-* local vars are ~~above~~ later, so `ebp-0x4`
-* arguments are ~~below~~ earlier so `ebp-0x8`
+* local vars are ~~above~~ lower, so `rbp-0x4`
+* arguments are ~~below~~ higher so `rbp+0x8`
 
 {{% /section %}}
 
@@ -82,14 +57,13 @@ referenced in relation to `ebp` e.g. `ebp-0x4`
 {{% section %}}
 
 ## buffer overflows
-tldr: trust is bad
 
 ---
 
 ### reading into a buffer
 what happens when you write more content than a buffer can hold
 
-* mordern languages might just resize (python)
+* modern languages might just resize (python)
 * some languages might throw an exception
 * maybe it would crash? (sometimes it will)
 * C (& lower-level languages) just kinda run with it
@@ -102,7 +76,7 @@ so where exactly does that content go
 * we've talked about stack frames
 * if we write more content, it'll just start overwriting other content on the stack
     * other variables
-    * control stuff (EBP, EIP)
+    * control stuff (RBP, RIP)
 
 ---
 
@@ -112,10 +86,6 @@ so where exactly does that content go
 * ~~content from other processes?~~
 
 > this could allow us to change the application flow
-
----
-
-### demo
 
 ---
 
@@ -183,7 +153,7 @@ kinda like bruteforce but smart
 # gets(buffer)
 $ AAAABBBBCCCCDDDDEEEEFFFF
 
-# we SIGSEGV at EIP = EEEE
+# we SIGSEGV at RIP = EEEEEEEE
 ```
 > then we need 16 bytes of padding before the return address
 
@@ -193,10 +163,7 @@ $ AAAABBBBCCCCDDDDEEEEFFFF
 
 pwntools
 ```python
-#  
 cyclic(20) # generate a chunk of length 20
-
-#   
 c = cyclic_gen()
 c.get(n)        # get a chunk of length n
 c.find(b'caaa') # (8,0,8): pos 8, which is chunk 0 at pos 8
@@ -217,16 +184,17 @@ cyclic -o aaae # -> 13 = find offset
 {{% section %}}
 
 # memory protections
-ew cringe security stuff
 
 ---
 
-## PIE (yum)
+## PIE
 position independent execution
 
 * every time you run the binary, it gets loaded into a different location in memory
 * this means just can't simply set EIP to `win()`
 * binja will only show the offset from the binary base
+
+> PIE is a binary protection
 
 ---
 
@@ -236,13 +204,13 @@ notice the region is entirely different
 ```bash
 # no PIE
 $ ./leak
-win() is at 0x8041234
+win() is at 0x08041234
 
 # with PIE
 $ ./leak
-win() is at 0x5650161
+win() is at 0x05650161
 $ ./leak
-win() is at 0x5650911
+win() is at 0x05650911
 ```
 
 ---
@@ -250,9 +218,9 @@ win() is at 0x5650911
 ## ASLR
 address space layout randomization
 
----
+> ASLR is a kernel protection
 
-### using ASLR
+using ASLR
 ```bash
 # turn aslr off
 sudo sysctl kernel.randomize_va_space=0
@@ -263,32 +231,23 @@ cat /proc/sys/kernel/randomize_va_space
 
 ---
 
-### wait what's the difference
-ASLR is a kernel protection, PIE is a binary protection
-
-* aslr is kinda like PIE for libc
-
----
-
 ## stack canaries
 they save the day and make overflows impossible
-
-* a random value between the user buffers and [ER]IP
+* a random value between the user buffers and RIP
 * if the value of that canary changes during execution, the program will abort
 * this is what the `__stack_chk_fail()` thing is in some of the source code you'll have read
 
 ---
 
-### canaries in memory
+### stack canaries in memory
 ```
-    0x1C  [  ARGS  ] <- parameters
-    0x18  [   EIP  ] <- stored return pointer
-    0x14  [   EBP  ] <- stored frame pointer
-    0x00  [ canary ] <- canary goes here
-    0x0C  [  AAAA  ] <- these are local vars
-    0x08  [  AAAA  ]
-    0x04  [  AAAA  ]
-    0x00  [  AAAA  ]
+    0x30  [       ARGS       ] <- parameters
+    0x28  [       RIP        ] <- stored return pointer
+    0x20  [       RBP        ] <- stored frame pointer
+    0x18  [ AAAAAAAAAAAAAAAA ] <- local vars
+    0x10  [ 0000000000000001 ] <- an int?
+    0x08  [ DEADBEEFCAFEBABE ] <- a pointer
+    0x00  [ 5945455459454554 ] <- 4 characters
 ```
 
 > real value stored somewhere else, and checked before the function returns
@@ -307,22 +266,5 @@ memory leaks basically
 ### cool notes
 
 * [these could be helpful](https://ir0nstone.gitbook.io/notes/types/stack/introduction)
-
-{{% /section %}}
-
----
-
-{{% section %}}
-
-## lab
-* there is one binary, with 2 vulns (both trivial)
-    * don't look at the source code
-    * later on you won't be given it!
-
-> give it a go in groups of 2!
-
----
-
-# walkthrough
 
 {{% /section %}}
