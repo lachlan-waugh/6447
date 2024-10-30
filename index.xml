@@ -352,7 +352,7 @@
 &lt;h3 id="buffer-overflows">buffer overflows&lt;/h3>
 &lt;ul>
 &lt;li>
-&lt;p>Abusing functions which can read more data than they have allocated memory for (&lt;code>gets&lt;/code>, &lt;code>strcpy&lt;/code>)&lt;/p></description></item><item><title>8: heap</title><link>/week8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week8/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;p>Abusing functions which can read more data than they have allocated memory for (&lt;code>gets&lt;/code>, &lt;code>strcpy&lt;/code>)&lt;/p></description></item><item><title>8: heap</title><link>/week8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week8/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -360,11 +360,6 @@
  
 &lt;h1 id="heap-exploitation">heap exploitation&lt;/h1>
 &lt;h3 id="6447-week8">6447 week8&lt;/h3>
-&lt;hr>
-&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
-&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
-&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
-&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
 &lt;hr>
 &lt;h3 id="chunks">chunks&lt;/h3>
 &lt;p>&lt;code>malloc()&lt;/code> returns chunks (blocks of memory)&lt;/p>
@@ -377,7 +372,7 @@
 
 
 &lt;section data-shortcode-section>
-&lt;img src="../assets/img/week08/in-use.png" height="500px" />
+&lt;img src="../assets/img/week8/in-use.png" height="500px" />
 &lt;hr>
 &lt;h4 id="what-is-the-metadata">what is the &amp;ldquo;metadata&amp;rdquo;&lt;/h4>
 &lt;ul>
