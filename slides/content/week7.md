@@ -138,7 +138,7 @@ it's going to execute each gadget, then grab the next one off the stack, and exe
 ```
 /* argv = envp = NULL */
 xor rcx, rdx
-xor rcx, rcx
+xor rdx, rdx
 
 /* push '/bin/sh' onto stack */
 push 0x732f2f6e69622f
