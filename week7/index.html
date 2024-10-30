@@ -15,7 +15,7 @@ jmp rcx
     MOV RAX, 12         XOR RAX, RAX       INC RAX; CALL WIN
 </code></pre><blockquote><p>note, I made those ^^^ up entirely</p></blockquote></section><section><h3 id=old-shellcode>Old shellcode</h3><pre tabindex=0><code>/* argv = envp = NULL */
 xor rcx, rdx
-xor rcx, rcx
+xor rdx, rdx
 
 /* push &#39;/bin/sh&#39; onto stack */
 push 0x732f2f6e69622f
