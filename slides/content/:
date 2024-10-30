@@ -4,7 +4,7 @@ layout: "bundle"
 outputs: ["Reveal"]
 ---
 
-## We'll get started at 18:05
+## We'll get started at 1[68]:05
 
 ---
 
@@ -25,7 +25,7 @@ outputs: ["Reveal"]
 ### in-use chunks
 {{% section %}}
 
-<img src="../assets/img/week8/in-use.png" height="500px" />
+<img src="../assets/img/week08/in-use.png" height="500px" />
 
 ---
 
@@ -40,7 +40,7 @@ outputs: ["Reveal"]
 
 ---
 
-<img src="../img/week8/allocated.png" height="500px" />
+<img src="../img/week08/allocated.png" height="500px" />
 
 {{% /section %}}
 
@@ -57,7 +57,7 @@ outputs: ["Reveal"]
 
 ---
 
-<img src="../img/week8/free.png" height="500px" />
+<img src="../img/week08/free.png" height="500px" />
 
 {{% /section %}}
 
@@ -118,8 +118,8 @@ each bin can only store 7 chunks
 
 {{% section %}}
 ### A quick note
-we're attacking heap implementation, not bad programming. So you'll need to use the right version
-* depending on your libc version, you might get errors, e.g. double `free()` detected.
+* *we're attacking the heap implementation, not bad programming. So different systems/versions may change how the program acts (& if your exploit works)*
+* depending on your OS/LIBC version/~~the orientation of the sun~~, you might get errors, e.g. double `free()` detected blah blah.
 * we'll be attacking glibc 2.31
 
 ---
@@ -203,6 +203,10 @@ free(chunk_1)
 free(chunk_2)
 free(chunk_1)
 ```
+
+---
+
+### demo
 
 {{% /section %}}
 
