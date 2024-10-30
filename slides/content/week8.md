@@ -40,7 +40,7 @@ outputs: ["Reveal"]
 
 ---
 
-<img src="../img/week8/allocated.png" height="500px" />
+<img src="../assets/img/week8/allocated.png" height="500px" />
 
 {{% /section %}}
 
@@ -57,7 +57,7 @@ outputs: ["Reveal"]
 
 ---
 
-<img src="../img/week8/free.png" height="500px" />
+<img src="../assets/img/week8/free.png" height="500px" />
 
 {{% /section %}}
 
