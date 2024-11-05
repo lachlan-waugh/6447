@@ -1,11 +1,12 @@
 ## slides
-* week1 [slides](week1) [~~recording~~]()
-* week2 [slides](week2) [~~recording~~]()
-* week3 [slides](week3) [recording](https://youtu.be/a-cwmrc7sjo)
-* week4 [slides](week4) ~~[recording]()~~
-* week5 [slides](week5) ~~[recording]()~~
-* week7 [slides](week7) ~~[recording]()~~
-* week8 [slides](week8) ~~[recording]()~~
+* week1 [slides](1) [~~recording~~]()
+* week2 [slides](2) [~~recording~~]()
+* week3 [slides](3) [recording](https://youtu.be/a-cwmrc7sjo)
+* week4 [slides](4) ~~[recording]()~~
+* week5 [slides](5) ~~[recording]()~~
+* week7 [slides](7) ~~[recording]()~~
+* week8 [slides](8) ~~[recording]()~~
+* week9 [slides](9) ~~[recording]()~~
 
 &nbsp;
 

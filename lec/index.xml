@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lecs on COMP6447 Resources</title><link>/lec/</link><description>Recent content in Lecs on COMP6447 Resources</description><generator>Hugo</generator><language>en-au</language><atom:link href="/lec/index.xml" rel="self" type="application/rss+xml"/><item><title>02: buffer overflows</title><link>/lec/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lec/2/</guid><description>&lt;h2 id="well-get-started-at-4605">we&amp;rsquo;ll get started at [46]:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="buffer-overflows">buffer overflows&lt;/h1>
+&lt;h3 id="6447-lecture02">6447 lecture02&lt;/h3>
+&lt;hr>
+&lt;pre tabindex="0">&lt;code> ___________________________.
+ |[]|---------------------|[]||
+ |;;| ----------------- |;;||
+ |;;| | COMP6447 | |;;||
+ |;;| ----------------- |;;||
+ |;;| AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ |;;|_____________________|;;||
+ |;;;;;;;;;;;;;;;;;;;;;;;;;;;||
+ |;;;;;;_______________ ;;;;;||
+ |;;;;;| ___ |;;;;;||
+ |;;;;;| |;;;| |;;;;;||
+ |;;;;;| |___| |;;;;;||
+ \_____|_______________|_____||
+ ~~~~~^^^^^^^^^^^^^^^^^~~~~~~
+&lt;/code>&lt;/pre>&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="reverse-engineering">reverse engineering&lt;/h2>
+
+&lt;/section>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="how-does-assembly-work">how does assembly work&lt;/h2>
+&lt;hr>
+&lt;h3 id="compilers">compilers&lt;/h3>
+&lt;hr>
+&lt;h3 id="decompiling">decompiling&lt;/h3>
+
+&lt;/section>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h3 id="registers">registers&lt;/h3>
+&lt;hr>
+&lt;h3 id="x86-registers">x86 registers&lt;/h3>
+&lt;hr>
+&lt;h3 id="tell-me-more">tell me more&lt;/h3>
+&lt;hr>
+&lt;h3 id="even-more">even more&amp;hellip;&lt;/h3>
+&lt;hr>
+&lt;h3 id="what-is-a-stack">what is a stack&lt;/h3>
+&lt;hr>
+&lt;h3 id="ebp--esp">ebp &amp;amp; esp&lt;/h3>
+&lt;hr>
+&lt;h3 id="this-might-help">this might help&lt;/h3>
+&lt;hr>
+&lt;h3 id="this-might-actually-help">this might actually help&lt;/h3>
+&lt;hr>
+&lt;h3 id="function-proepilogue">function (pro|epi)logue&lt;/h3>
+
+&lt;/section></description></item><item><title>week01: introduction</title><link>/lec/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lec/1/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;hr>
+
+&lt;section data-noprocess data-shortcode-slide
+ class="center">
+ 
+&lt;h1 id="course-intro--background">course intro + background&lt;/h1>
+&lt;h2 id="comp6447-week01">COMP6447 Week01&lt;/h2>
+&lt;hr>
+&lt;h2 id="good-faith-policy">Good faith policy&lt;/h2>
+&lt;p>We expect a high standard of professionalism from you at all times while you are taking any of our courses. We expect all students to act in good faith at all times&lt;/p>
+&lt;p>&lt;em>TLDR: Don&amp;rsquo;t be a &lt;del>dick&lt;/del> jerk&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://sec.edu.au/good-faith-policy">sec.edu.au/good-faith-policy&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h1 id="course-introduction">course introduction&lt;/h1>
+&lt;hr>
+
+
+&lt;section data-shortcode-section>
+&lt;h2 id="contact-hours">contact hours&lt;/h2>
+&lt;ul>
+&lt;li>lectures - 2 hours&lt;/li>
+&lt;li>tutorials - 2 hours&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>maybe less than you&amp;rsquo;re used to&lt;/p></description></item></channel></rss>

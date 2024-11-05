@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>COMP6447 Resources</title><link>/</link><description>Recent content on COMP6447 Resources</description><generator>Hugo</generator><language>en-au</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>02: buffer overflows</title><link>/lecture2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture2/</guid><description>&lt;h2 id="well-get-started-at-4605">we&amp;rsquo;ll get started at [46]:05&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>COMP6447 Resources</title><link>/</link><description>Recent content on COMP6447 Resources</description><generator>Hugo</generator><language>en-au</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>02: buffer overflows</title><link>/lec/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lec/2/</guid><description>&lt;h2 id="well-get-started-at-4605">we&amp;rsquo;ll get started at [46]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -61,7 +61,7 @@
 &lt;hr>
 &lt;h3 id="function-proepilogue">function (pro|epi)logue&lt;/h3>
 
-&lt;/section></description></item><item><title>1: intro</title><link>/week1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week1/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;/section></description></item><item><title>1: intro</title><link>/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/1/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -116,7 +116,7 @@
 
 
 &lt;section data-shortcode-section>
-&lt;p>&lt;img src="../assets/img/week01/icebreaker.jpg" alt="">&lt;/p></description></item><item><title>2: buffer overflows</title><link>/week2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week2/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;p>&lt;img src="../assets/img/week01/icebreaker.jpg" alt="">&lt;/p></description></item><item><title>2: buffer overflows</title><link>/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/2/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -142,7 +142,7 @@
 &lt;/ul>
 &lt;hr>
 &lt;h2 id="stack-frames-1">stack frames&lt;/h2>
-&lt;p>basic example&lt;/p></description></item><item><title>3: shellcode</title><link>/week3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week3/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;p>basic example&lt;/p></description></item><item><title>3: shellcode</title><link>/3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/3/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -168,7 +168,7 @@
 &lt;hr>
 &lt;h3 id="harder-re">harder re&lt;/h3>
 &lt;p>instructions can give context to the variables&lt;/p>
-&lt;p>&lt;img src="./assets/img/week03/operation_implications.png" alt="">&lt;/p></description></item><item><title>4: format strings</title><link>/week4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week4/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;p>&lt;img src="./assets/img/week03/operation_implications.png" alt="">&lt;/p></description></item><item><title>4: format strings</title><link>/4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/4/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -200,7 +200,7 @@
 &lt;/ul>
 &lt;hr>
 &lt;h2 id="anatomy-of-a-format-string">anatomy of a format string&lt;/h2>
-&lt;p>&lt;code>%&amp;lt;flags&amp;gt;&amp;lt;width&amp;gt;&amp;lt;precision&amp;gt;&amp;lt;modifier&amp;gt;&amp;lt;type&amp;gt;&lt;/code>&lt;/p></description></item><item><title>5: programming errors/fuzzing</title><link>/week5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week5/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;p>&lt;code>%&amp;lt;flags&amp;gt;&amp;lt;width&amp;gt;&amp;lt;precision&amp;gt;&amp;lt;modifier&amp;gt;&amp;lt;type&amp;gt;&lt;/code>&lt;/p></description></item><item><title>5: programming errors/fuzzing</title><link>/5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/5/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -308,7 +308,7 @@
 &lt;h3 id="is-this-code-the-same">is this code the same?&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-C" data-lang="C">&lt;span style="display:flex;">&lt;span>flags &lt;span style="color:#f92672">=&lt;/span> flags &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Flags: %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>,flags);
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p> &lt;/p></description></item><item><title>7: rop</title><link>/week7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week7/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p> &lt;/p></description></item><item><title>7: rop</title><link>/7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/7/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -352,7 +352,7 @@
 &lt;h3 id="buffer-overflows">buffer overflows&lt;/h3>
 &lt;ul>
 &lt;li>
-&lt;p>Abusing functions which can read more data than they have allocated memory for (&lt;code>gets&lt;/code>, &lt;code>strcpy&lt;/code>)&lt;/p></description></item><item><title>8: heap</title><link>/week8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week8/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;p>Abusing functions which can read more data than they have allocated memory for (&lt;code>gets&lt;/code>, &lt;code>strcpy&lt;/code>)&lt;/p></description></item><item><title>8: heap</title><link>/8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/8/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -386,7 +386,7 @@
 &lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>mixing metadata (control) &amp;amp; user data?&lt;/p></description></item><item><title>9: more rop</title><link>/week9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week9/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
+&lt;p>mixing metadata (control) &amp;amp; user data?&lt;/p></description></item><item><title>9: more rop</title><link>/9/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/9/</guid><description>&lt;h2 id="well-get-started-at-16805">We&amp;rsquo;ll get started at 1[68]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -413,7 +413,7 @@
 &lt;li>probably won&amp;rsquo;t get exactly what you want&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>malloc, printf, mmap can all leverage other exploits&lt;/p></description></item><item><title>week01: introduction</title><link>/lecture1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lecture1/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
+&lt;p>malloc, printf, mmap can all leverage other exploits&lt;/p></description></item><item><title>week01: introduction</title><link>/lec/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/lec/1/</guid><description>&lt;h2 id="well-get-started-at-1805">We&amp;rsquo;ll get started at 18:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
@@ -438,7 +438,7 @@
 &lt;li>tutorials - 2 hours&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>maybe less than you&amp;rsquo;re used to&lt;/p></description></item><item><title>Week10</title><link>/week10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/week10/</guid><description>&lt;h2 id="well-get-started-at-4605">We&amp;rsquo;ll get started at [46]:05&lt;/h2>
+&lt;p>maybe less than you&amp;rsquo;re used to&lt;/p></description></item><item><title>Week10</title><link>/10/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/10/</guid><description>&lt;h2 id="well-get-started-at-4605">We&amp;rsquo;ll get started at [46]:05&lt;/h2>
 &lt;hr>
 
 &lt;section data-noprocess data-shortcode-slide
